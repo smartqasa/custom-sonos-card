@@ -68,7 +68,7 @@ Use the Visual Editor in Home Assistant to configure the card. Most options are 
 ### Configuration in YAML
 
 ```yaml
-type: custom:sonos-card # or one of the individual sections mentioned above
+type: custom:sonos-card
 # All settings below are optional
 
 # common for all sections
