@@ -23,10 +23,15 @@ export class Player extends LitElement {
     return html`
       <div class="container">
         <sonos-player-header class="header" .store=${this.store}></sonos-player-header>
-        <div class="artwork" style=${this.getBackgroundImage()}></div>
+        <div class="artwork" style=${this.artworkStyle()}></div>
         <sonos-player-controls class="controls" .store=${this.store}></sonos-player-controls>
       </div>
     `;
+  }
+
+  private artworkStyle() {
+    const minHeight = this.config.artworkMinHeight ?? 5;
+    return `${this.getBackgroundImage()}; min-height: ${minHeight}rem`;
   }
 
   private getBackgroundImage() {
@@ -105,7 +110,7 @@ export class Player extends LitElement {
         flex-shrink: 0;
         width: 100%;
         height: 100%;
-        min-height: 10rem;
+        min-height: 5rem;
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
