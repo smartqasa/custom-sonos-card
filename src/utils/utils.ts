@@ -2,6 +2,7 @@ import { HassEntity } from 'home-assistant-js-websocket';
 import { CardConfig, PredefinedGroup, Section } from '../types';
 import { ACTIVE_PLAYER_EVENT, ACTIVE_PLAYER_EVENT_INTERNAL } from '../constants';
 import { MediaPlayer } from '../model/media-player';
+import { GroupingItem } from '../model/grouping-item';
 
 export function getSpeakerList(mainPlayer: MediaPlayer, predefinedGroups: PredefinedGroup[] = []) {
   const playerIds = mainPlayer.members.map((member) => member.id).sort();
@@ -64,4 +65,21 @@ export function getWidth(config: CardConfig) {
 
 export function getGroupPlayerIds(hassEntity: HassEntity): string[] {
   return hassEntity.attributes.sonos_group || hassEntity.attributes.group_members || [hassEntity.entity_id];
+}
+
+export function getGroupingChanges(groupingItems: GroupingItem[], joinedPlayers: string[], activePlayerId: string) {
+  const isSelected = groupingItems.filter((item) => item.isSelected);
+  const unJoin = groupingItems
+    .filter((item) => !item.isSelected && joinedPlayers.includes(item.player.id))
+    .map((item) => item.player.id);
+  const join = groupingItems
+    .filter((item) => item.isSelected && !joinedPlayers.includes(item.player.id))
+    .map((item) => item.player.id);
+
+  let newMainPlayer = activePlayerId;
+
+  if (unJoin.includes(activePlayerId)) {
+    newMainPlayer = isSelected[0].player.id;
+  }
+  return { unJoin, join, newMainPlayer };
 }

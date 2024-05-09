@@ -38,13 +38,15 @@ class Volume extends LitElement {
             max=${max}
             @value-changed=${this.volumeChanged}
             .disabled=${disabled}
+            class=${this.config.dynamicVolumeSlider && max === 100 ? 'over-threshold' : ''}
           ></ha-control-slider>
           <div class="volume-level">
             <div style="flex: ${volume}">0%</div>
-            <div class="percentage">${Math.round(volume)}%</div>
+            <div class="percentage">${volume}%</div>
             <div style="flex: ${max - volume};text-align: right">${max}%</div>
           </div>
         </div>
+        <div class="percentage-slim" hide=${this.slim && nothing}>${volume}%</div>
         <sonos-ha-player
           hide=${showPowerButton}
           .store=${this.store}
@@ -74,6 +76,11 @@ class Volume extends LitElement {
       ha-control-slider {
         --control-slider-color: var(--accent-color);
       }
+
+      ha-control-slider.over-threshold {
+        --control-slider-color: var(--primary-text-color);
+      }
+
       ha-control-slider[disabled] {
         --control-slider-color: var(--disabled-text-color);
       }
@@ -107,11 +114,18 @@ class Volume extends LitElement {
         font-size: x-small;
         display: flex;
       }
+
       .percentage {
         flex: 2;
+      }
+
+      .percentage,
+      .percentage-slim {
         font-weight: bold;
         font-size: 12px;
+        align-self: center;
       }
+
       *[hide] {
         display: none;
       }

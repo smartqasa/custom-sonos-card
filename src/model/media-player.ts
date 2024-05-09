@@ -68,11 +68,13 @@ export class MediaPlayer {
   }
 
   getVolume() {
+    let volume: number;
     if (this.members.length > 1 && this.config.adjustVolumeRelativeToMainPlayer) {
-      return this.getAverageVolume();
+      volume = this.getAverageVolume();
     } else {
-      return 100 * this.volumePlayer.attributes.volume_level;
+      volume = 100 * this.volumePlayer.attributes.volume_level;
     }
+    return Math.round(volume);
   }
 
   private getAverageVolume() {
