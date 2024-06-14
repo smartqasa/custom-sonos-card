@@ -193,7 +193,6 @@ export class Grouping extends LitElement {
     if (newMainPlayer !== activePlayerId && !this.config.dontSwitchPlayerWhenGrouping) {
       dispatchActivePlayerId(newMainPlayer, this.config, this);
     }
-    // if config entityid is part of unjoin and dontSwitchPlayerWhenGrouping is true, we need to update the active player to config entityid
     if (this.config.entityId && unJoin.includes(this.config.entityId) && this.config.dontSwitchPlayerWhenGrouping) {
       dispatchActivePlayerId(this.config.entityId, this.config, this);
     }
