@@ -33,21 +33,24 @@ export class MediaBrowser extends LitElement {
       until(
         this.getFavorites(this.activePlayer).then((items) => {
           if (items?.length) {
-            return (this.config.mediaBrowserItemsPerRow ?? 4) > 1
-              ? html`
-                  <sonos-media-browser-icons
-                    .items=${items}
-                    .store=${this.store}
-                    @item-selected=${this.onMediaItemSelected}
-                  ></sonos-media-browser-icons>
-                `
-              : html`
-                  <sonos-media-browser-list
-                    .items=${items}
-                    .store=${this.store}
-                    @item-selected=${this.onMediaItemSelected}
-                  ></sonos-media-browser-list>
-                `;
+            const showFavoritesAsIcons = (this.config.mediaBrowserItemsPerRow ?? 4) > 1;
+            if (showFavoritesAsIcons) {
+              return html`
+                <sonos-media-browser-icons
+                  .items=${items}
+                  .store=${this.store}
+                  @item-selected=${this.onMediaItemSelected}
+                ></sonos-media-browser-icons>
+              `;
+            } else {
+              return html`
+                <sonos-media-browser-list
+                  .items=${items}
+                  .store=${this.store}
+                  @item-selected=${this.onMediaItemSelected}
+                ></sonos-media-browser-list>
+              `;
+            }
           } else {
             return html`<div class="no-items">No favorites found</div>`;
           }
