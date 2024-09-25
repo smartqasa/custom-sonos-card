@@ -223,6 +223,22 @@ The following variables are being used and can be set in your theme to change th
 
 Read more about using theme variables here: https://www.home-assistant.io/integrations/frontend/#defining-themes
 
+## Dynamic volume level slider
+
+The volume level slider is dynamically adjusting its scale. If volume is below 20% it will show a scale up to 30%. Above
+20% it will show a scale up to 100%. The color will also change from green to red clearly indicating which scale is
+being used.
+
+![dynamic_volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/dynamic_volumes.png)
+
+Enable it in config with `dynamicVolumeSlider: true`
+
+## Linking to specific player
+
+Append `#media_player.my_sonos_player` to page URL to have that player selected.
+
+If `entityId` is configured for the card, the url param will be ignored. See more in the Usage section above.
+
 ## CSS Styling
 
 The recommend way to change look and feel is to use the built-in theming capabilities in Home Assistant. If that is not enough this card supports being styled with [card_mod](https://github.com/thomasloven/lovelace-card-mod).
@@ -247,18 +263,422 @@ The above YAML renders the following:
 
 ![styling.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/styling.png)
 
-## Dynamic volume level slider
+### More card_mod examples
 
-The volume level slider is dynamically adjusting its scale. If volume is below 20% it will show a scale up to 30%. Above
-20% it will show a scale up to 100%. The color will also change from green to red clearly indicating which scale is
-being used.
+### Example 1
 
-![dynamic_volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/dynamic_volumes.png)
+![img.png](img/card_mod.png)
 
-Enable it in config with `dynamicVolumeSlider: true`
+##### Groups
 
-## Linking to specific player
+```yaml
+card_mod:
+  style:
+    ha-card.type-custom-sonos-card>div.content>sonos-groups$mwc-list>sonos-group:
+      $: |
+        mwc-list-item[hasmeta] {
+          background: var(--theme-card-background-glass);
+          border: 1px solid var(--theme-card-border-glass);
+          height: 61.4468px!important;
+          border-radius: var(--theme-card-border-radius);
+          margin: 12px 0px 0px 0px;
+        }
+        mwc-list-item[activated] {
+          --mdc-ripple-color: none;
+        }
+        mwc-list-item>div>div>span:nth-child(1) {
+          color: var(--primary-text-color);
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 15.4px;
+        }
+        mwc-list-item>div>div>span:nth-child(2) {
+          color: var(--secondary-text-color);
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 13.2px;
+        }
+        mwc-list-item > div > ha-icon {
+          color: rgb(var(--mush-rgb-disabled));
+          background: rgba(var(--mush-rgb-disabled), 0.2);
+          --mdc-icon-size: 30px;
+          min-width: 40px;
+          min-height: 40px;
+          max-width: 40px;
+          max-height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        mwc-list-item[activated] > div > ha-icon {
+          color: rgb(var(--mush-rgb-blue));
+          background: rgba(var(--mush-rgb-blue), 0.2);
+        }
+    ha-card.type-custom-sonos-card>div.content>sonos-groups$mwc-list>sonos-group:nth-child(1)$: |
+      mwc-list-item[hasmeta] {
+        margin-top: 4px;
+      }
+    .: |
+      ha-card {
+        background: none;
+        border: none;
+        --accent-color: none;
+        --primary-color: var(--primary-text-color);
+        --secondary-background-color: none;
+      }
+```
 
-Append `#media_player.my_sonos_player` to page URL to have that player selected.
+##### Player
+```yaml
+card_mod:
+  style:
+    sonos-player:
+      $:
+        sonos-player-header$: |
+          .info .song {
+            color: var(--primary-text-color);
+            font-weight: 600;
+            font-size: 20px;
+          }
+    .: |
+      ha-card {
+        --primary-color: none;
+        --secondary-background-color: none;
+      }
+```
 
-If `entityId` is configured for the card, the url param will be ignored. See more in the Usage section above.
+##### Grouping
+```yaml
+card_mod:
+  style:
+    sonos-grouping:
+      $: |
+        ha-control-button {
+          height: 36px;
+          width: auto;
+          min-width: 36px;
+          border-width: 1px;
+          border-color: var(--theme-card-border-glass);
+          --control-button-background-color: var(--theme-card-background-glass)!important;
+          --mdc-ripple-color: none;
+          --control-button-background-opacity: 1;
+          --control-button-border-radius: 18px;
+        }
+        ha-control-button span {
+          color: var(--primary-text-color);
+          line-height: 14.4px;
+          font-weight: 700;
+          font-size: 14px;
+        }
+        ha-control-button ha-icon {
+          color: var(--primary-color);
+          
+        }
+        mwc-list.list>mwc-list-item {
+          background: var(--theme-card-background-glass);
+          border: 1px solid var(--theme-card-border-glass);
+          height: 61.4468px;
+          border-radius: var(--theme-card-border-radius);
+          margin: 12px 2px 0px 2px;
+        }
+        mwc-list>mwc-list-item:nth-child(1) {
+          margin-top: 0;
+        }
+        mwc-list.list>mwc-list-item[activated] {
+          --mdc-ripple-color: none;
+        }
+        mwc-list.list>mwc-list-item>ha-icon {
+          margin-right: 10px;
+          display: flex;
+          color: rgb(var(--mush-rgb-disabled));
+          background-color: rgba(var(--mush-rgb-disabled), 0.2);
+          min-width: 40px;
+          min-height: 40px;
+          border-radius: 50%;
+          opacity: 1;
+          align-items: center;
+          justify-content: center;
+        }
+        mwc-list.list>mwc-list-item[activated]>ha-icon {
+          color: rgb(var(--mush-rgb-blue));
+          background: rgba(var(--mush-rgb-blue), 0.2);
+        }
+        mwc-list.list>mwc-list-item>span {
+          opacity: 1;
+          color: var(--primary-text-color);
+        }
+    div.content>sonos-grouping$mwc-list.list>mwc-list-item:
+      $: |
+        span.mdc-deprecated-list-item__text>slot {
+          display: flex;
+          align-items: center;
+        }
+    .: |
+      ha-card {
+        background: none;
+        border-color: transparent;
+        --accent-color: none;
+        --primary-color: var(--primary-text-color);
+        --secondary-background-color: none;
+      }
+```
+
+### Example 2 - Resize volume and icons
+
+```yaml
+card_mod:
+  style:
+    .: |
+    sonos-player$ sonos-player-controls$ sonos-volume$: |
+      ha-control-slider {
+        height: 10px;
+      }
+      ha-icon-button {
+        --mdc-icon-button-size: 2rem !important;
+        --mdc-icon-size: 1.5rem !important;
+      }    
+
+```
+
+### Example 3 - Change the font and background color of grouping button
+
+```yaml
+card_mod:
+  style:
+    sonos-grouping$: |
+      sonos-grouping-button {
+        --accent-color: black;
+        font-size: 30px;
+      }
+```
+
+### Example 4 - Resize controls area in player section
+
+```yaml
+card_mod:
+  style:
+    sonos-player$: |
+      .controls {
+        margin: 0 3rem !important;
+      }
+```
+
+### Example 5 - Hide entity/group name
+
+```yaml
+card_mod:
+  style:
+    sonos-player$ sonos-player-header$: |
+      .entity {
+        display: none;
+      }
+```
+
+### Example 6 - More transparent title track and volume slider
+
+```yaml
+card_mod:
+  style:
+    .: ''
+    sonos-player$: |
+      .controls {
+        background-color: rgba(var(--rgb-card-background-color), 0.4) !important;
+      }
+      sonos-player-header {
+        background-color: rgba(var(--rgb-card-background-color), 0.4) !important;
+      }
+```
+
+### Example 7 - Make the padding smaller around the artwork of the thumbnails in the favorites section
+
+```yaml
+card_mod:
+  style:
+    sonos-media-browser$: |
+      .button {
+        --control-button-padding: 4px;
+      }
+```
+
+### Example 8 - Remove artwork in player section
+
+```yaml
+card_mod:
+  style:
+    sonos-player$: |
+      .artwork {
+        display: none !important;
+      }
+```
+
+### Example 9 - Hide volume slider
+
+```yaml
+card_mod:
+  style:
+    "sonos-player$ sonos-player-controls$": |
+      sonos-volume {
+        display: none;
+      }
+```
+
+### Example 10 - Hide background from controls when artwork is shown as background
+
+```yaml
+artworkAsBackground: true
+card_mod:
+  style: |
+    ha-card {
+      --rgb-card-background-color: false;
+    }
+```
+
+### Example 11 - Modify transparency of background from controls when artwork is shown as background
+
+```yaml
+artworkAsBackground: true
+card_mod:
+  style: 
+    sonos-player$: |
+      [background] {
+        background-color: rgba(0,0,0, 0.3) !important;
+      }
+```
+
+### Example 12 - Show only player and now playing text information
+
+```yaml
+heightPercentage: auto
+sections:
+  - player
+card_mod:
+  style:
+    sonos-player$: |
+      .artwork {
+        display: none;
+      }
+      .controls {
+        display: none;
+      }
+```
+
+### Example 13 - Style the favorite section
+
+```yaml
+card_mod:
+  style:
+    sonos-media-browser$ sonos-media-browser-icons$: |
+      div {            
+        border: 1px solid white;
+        color: red !important;
+      }  
+```
+
+### Example 14 - Color of the player controls
+
+```yaml
+card_mod:
+  style:
+    sonos-player$ sonos-player-controls$: |
+      .icons * {    
+        color: pink;
+      }
+```
+
+### Example 15 - Remove the top "All favorites" and "Browse media" from the favorites section
+
+```yaml
+card_mod:
+  style:
+    sonos-media-browser$: |
+      sonos-media-browser-header {
+        display: none;
+      }
+```
+
+### Example 16 - Change colors of titles in favorites
+
+```yaml
+card_mod:
+  style:
+    sonos-media-browser$ sonos-media-browser-icons$: |
+      .title {            
+        color: red !important;
+        background-color: blue !important; 
+      }  
+```
+
+### Example 17 - Remove everything except the album art
+
+```yaml
+card_mod:
+  style:
+    sonos-player$: |
+      sonos-player-header, sonos-player-controls {
+        display: none;
+      }
+```
+
+### Example 18 - Hide the volume button and percentage
+
+```yaml
+card_mod:
+  style:
+    sonos-player$ sonos-player-controls$ sonos-volume$: |
+      .volume-level, ha-icon-button {
+        display:none !important;
+      }
+```
+
+![img.png](img/card_mod_2.png)
+
+### Example 19 - Changing the font size of song title
+
+```yaml
+card_mod:
+  style:
+    sonos-player$ sonos-player-header$: |
+      .song {
+        font-size: 1.2em; !important;
+      }
+```
+
+### Example 20 - Artwork position
+
+```yaml
+heightPercentage: auto
+card_mod:
+  style:
+    sonos-player$: |
+      .container {        
+        grid-template-areas:
+            'header artwork'
+            'controls artwork' !important;
+        grid-template-columns: 2fr 1fr !important;
+      }
+```
+
+![img.png](img/card_mod_3.png)
+
+### Example 21 - Size of group buttons
+
+```yaml
+card_mod:
+  style:
+    sonos-groups$: |
+      mwc-list {
+        width: 10rem;
+      }
+```
+
+### Example 22 - Font size for everything
+
+```yaml
+card_mod:
+  style: |
+      div {
+        font-size: 22px !important;
+      }
+```
+
