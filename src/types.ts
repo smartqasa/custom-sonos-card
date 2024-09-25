@@ -65,6 +65,7 @@ export interface CardConfig extends LovelaceCardConfig {
   dontSwitchPlayerWhenGrouping?: boolean;
   showSourceInPlayer?: boolean;
   showBrowseMediaInPlayerSection?: boolean;
+  showChannelInPlayer?: boolean;
 }
 
 export interface MediaArtworkOverride {

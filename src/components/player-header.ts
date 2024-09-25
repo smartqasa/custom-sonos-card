@@ -20,10 +20,14 @@ class PlayerHeader extends LitElement {
     if (this.config.showSourceInPlayer && this.activePlayer.attributes.source) {
       song = `${song} (${this.activePlayer.attributes.source})`;
     }
+    let album = this.activePlayer.attributes.media_album_name;
+    if (this.config.showChannelInPlayer && this.activePlayer.attributes.media_channel) {
+      album = this.activePlayer.attributes.media_channel;
+    }
     return html` <div class="info">
       <div class="entity">${speakerList}</div>
       <div class="song">${song}</div>
-      <div class="artist-album">${this.activePlayer.attributes.media_album_name}</div>
+      <div class="artist-album">${album}</div>
       <sonos-progress .store=${this.store}></sonos-progress>
     </div>`;
   }

@@ -101,6 +101,10 @@ export const ADVANCED_SCHEMA = [
     selector: { boolean: {} },
   },
   {
+    name: 'showChannelInPlayer',
+    selector: { boolean: {} },
+  },
+  {
     name: 'fallbackArtwork',
     type: 'string',
     help: 'Override default fallback artwork image if artwork is missing for the currently selected media',
