@@ -267,7 +267,7 @@ The above YAML renders the following:
 
 ### Example 1
 
-![img.png](img/card_mod.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod.png)
 
 ##### Groups
 
@@ -631,7 +631,7 @@ card_mod:
       }
 ```
 
-![img.png](img/card_mod_2.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod_2.png)
 
 ### Example 19 - Changing the font size of song title
 
@@ -659,7 +659,7 @@ card_mod:
       }
 ```
 
-![img.png](img/card_mod_3.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod_3.png)
 
 ### Example 21 - Size of group buttons
 
