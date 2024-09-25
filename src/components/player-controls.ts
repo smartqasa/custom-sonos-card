@@ -8,7 +8,7 @@ import { MediaPlayer } from '../model/media-player';
 import { when } from 'lit/directives/when.js';
 import { until } from 'lit-html/directives/until.js';
 
-const { SHUFFLE_SET, REPEAT_SET, PLAY, PAUSE, NEXT_TRACK, PREVIOUS_TRACK } = MediaPlayerEntityFeature;
+const { SHUFFLE_SET, REPEAT_SET, PLAY, PAUSE, NEXT_TRACK, PREVIOUS_TRACK, BROWSE_MEDIA } = MediaPlayerEntityFeature;
 
 class PlayerControls extends LitElement {
   @property({ attribute: false }) store!: Store;
@@ -23,6 +23,7 @@ class PlayerControls extends LitElement {
     this.mediaControlService = this.store.mediaControlService;
 
     const noUpDown = !!this.config.showVolumeUpAndDownButtons && nothing;
+    const noBrowseMedia = !!this.config.showBrowseMediaInPlayerSection && nothing;
     this.volumePlayer = this.activePlayer.getMember(this.config.playerVolumeEntityId) ?? this.activePlayer;
     return html`
       <div class="main" id="mediaControls">
@@ -39,6 +40,7 @@ class PlayerControls extends LitElement {
               <div class="audio-input-format">
                 ${this.config.showAudioInputFormat && until(this.getAudioInputFormat())}
               </div>
+              <sonos-ha-player hide=${noBrowseMedia} .store=${this.store} .features=${[BROWSE_MEDIA]}></sonos-ha-player>
             </div>
             <sonos-volume
               .store=${this.store}
