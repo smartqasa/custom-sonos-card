@@ -683,3 +683,12 @@ card_mod:
       }
 ```
 
+### Example 23 - Increase entity font 
+```
+card_mod:
+  style:
+    sonos-player$ sonos-player-header$: |
+      .entity {
+        font-size: 12px !important;
+      }
+```
