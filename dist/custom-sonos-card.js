@@ -982,8 +982,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
           bottom: 0;
           background-color: rgba(var(--rgb-card-background-color), 0.733);
         }
-      `]}}e([ae({attribute:!1})],cA.prototype,"store",void 0),e([ae({attribute:!1})],cA.prototype,"items",void 0),customElements.define("sonos-media-browser-icons",cA);class dA extends se{render(){var e;return G`
-      <div class="title">${null!==(e=this.store.config.mediaBrowserTitle)&&void 0!==e?e:"All Favorites"}</div>
+      `]}}e([ae({attribute:!1})],cA.prototype,"store",void 0),e([ae({attribute:!1})],cA.prototype,"items",void 0),customElements.define("sonos-media-browser-icons",cA);class dA extends se{render(){return G`
       <sonos-ha-player
         hide=${this.store.config.hideBrowseMediaButton||W}
         .store=${this.store}
