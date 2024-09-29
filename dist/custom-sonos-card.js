@@ -910,8 +910,8 @@ const gt=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       </mwc-list>
     `}static get styles(){return[r`
         .button {
-          --icon-width: 55px;
-          height: 60px;
+          --icon-width: 35px;
+          height: 40px;
         }
 
         .row {
@@ -956,7 +956,7 @@ const gt=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
 
         .button {
           --margin: 1%;
-          --width: calc(100% / var(--items-per-row) - var(--margin) * 2);
+          --width: calc(100% / var(--items-per-row) - var(--margin) * 3);
           width: var(--width);
           height: var(--width);
           margin: var(--margin);
@@ -995,8 +995,8 @@ const gt=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       .title {
         flex: 1;
         text-align: center;
-        font-size: 1.2rem;
-        font-weight: bold;
+        font-size: var(--sq-primary-font-size);
+        font-weight: var(--sq-primary-font-weight);
         display: flex;
         align-items: center;
         justify-content: center;

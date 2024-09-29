@@ -50,7 +50,7 @@ export class MediaBrowserIcons extends LitElement {
 
         .button {
           --margin: 1%;
-          --width: calc(100% / var(--items-per-row) - var(--margin) * 2);
+          --width: calc(100% / var(--items-per-row) - var(--margin) * 3);
           width: var(--width);
           height: var(--width);
           margin: var(--margin);

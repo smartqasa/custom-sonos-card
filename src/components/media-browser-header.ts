@@ -27,8 +27,8 @@ class MediaBrowserHeader extends LitElement {
       .title {
         flex: 1;
         text-align: center;
-        font-size: 1.2rem;
-        font-weight: bold;
+        font-size: var(--sq-primary-font-size);
+        font-weight: var(--sq-primary-font-weight);
         display: flex;
         align-items: center;
         justify-content: center;
