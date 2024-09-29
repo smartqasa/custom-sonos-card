@@ -46,6 +46,7 @@ export class MediaBrowserIcons extends LitElement {
         .icons {
           display: flex;
           flex-wrap: wrap;
+          justify-content: center;
         }
 
         .button {
