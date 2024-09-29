@@ -9,7 +9,8 @@ import './editor/editor';
 import { ACTIVE_PLAYER_EVENT, CALL_MEDIA_DONE, CALL_MEDIA_STARTED } from './constants';
 import { when } from 'lit/directives/when.js';
 import { styleMap } from 'lit-html/directives/style-map.js';
-import { cardDoesNotContainAllSections, getHeight, getWidth } from './utils/utils';
+//import { cardDoesNotContainAllSections, getHeight, getWidth } from './utils/utils';
+import { cardDoesNotContainAllSections, getHeight } from './utils/utils';
 
 const { GROUPING, GROUPS, MEDIA_BROWSER, PLAYER, VOLUMES } = Section;
 const TITLE_HEIGHT = 2;
@@ -168,12 +169,14 @@ export class Card extends LitElement {
   };
 
   haCardStyle(height: number) {
-    const width = getWidth(this.config);
+    //const width = getWidth(this.config);
     return styleMap({
       color: 'var(--secondary-text-color)',
       height: `${height}rem`,
-      minWidth: `20rem`,
-      maxWidth: `${width}rem`,
+      //minWidth: `20rem`,
+      //maxWidth: `${width}rem`,
+      minWidth: `${height}rem`,
+      maxWidth: `${height}rem`,
       overflow: 'hidden',
     });
   }
@@ -240,7 +243,7 @@ export class Card extends LitElement {
         text-align: center;
         font-weight: bold;
         font-size: var(--sq-primary-font-size);
-        color: var(--sq-primary-font-color);
+        color: rgb(var(--sq-primary-font-rgb));
       }
       .no-players {
         text-align: center;
