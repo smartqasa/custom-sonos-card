@@ -954,6 +954,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
+          padding: 0 1rem;
         }
 
         .button {
@@ -1069,9 +1070,13 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       .row {
         display: flex;
         flex-direction: column;
+
+        /*
         padding-top: 0.3rem;
         padding-right: 1rem;
         padding-bottom: 0.2rem;
+        */
+        padding: 0.3rem 1rem 0.2rem 1rem;
       }
 
       .row:not(:first-child) {
