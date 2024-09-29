@@ -955,6 +955,7 @@ const gt=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         }
 
         .button {
+          --control-button-padding: 0;
           --margin: 1%;
           --width: calc(100% / var(--items-per-row) - var(--margin) * 3);
           width: var(--width);
