@@ -36,8 +36,8 @@ export class MediaBrowserList extends LitElement {
     return [
       css`
         .button {
-          --icon-width: 35px;
-          height: 40px;
+          --icon-width: 45px;
+          height: 50px;
         }
 
         .row {

@@ -239,8 +239,8 @@ export class Card extends LitElement {
         margin: 0.4rem 0;
         text-align: center;
         font-weight: bold;
-        font-size: 1.2rem;
-        color: var(--secondary-text-color);
+        font-size: var(--sq-primary-font-size);
+        color: var(--sq-primary-font-color);
       }
       .no-players {
         text-align: center;
