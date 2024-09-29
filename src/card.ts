@@ -225,7 +225,7 @@ export class Card extends LitElement {
     return css`
       :host {
         --mdc-icon-button-size: 3rem;
-        --mdc-icon-size: 2rem;
+        --mdc-icon-size: 2.2rem;
       }
       ha-circular-progress {
         --md-sys-color-primary: var(--accent-color);

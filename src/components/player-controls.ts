@@ -73,6 +73,7 @@ class PlayerControls extends LitElement {
         justify-content: center;
         display: flex;
         align-items: center;
+        gap: 1rem;
       }
       .icons > *[hide] {
         display: none;

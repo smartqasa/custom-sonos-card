@@ -103,6 +103,7 @@ function me(e,t,A){return e?t(e):A?.(e)}
         justify-content: center;
         display: flex;
         align-items: center;
+        gap: 1rem;
       }
       .icons > *[hide] {
         display: none;
@@ -628,7 +629,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
     `}createStore(){var e;this.activePlayerId?this.store=new bt(this.hass,this.config,this.section,this,this.activePlayerId):(this.store=new bt(this.hass,this.config,this.section,this),this.activePlayerId=null===(e=this.store.activePlayer)||void 0===e?void 0:e.id)}getCardSize(){return 3}static getConfigElement(){return document.createElement("sonos-card-editor")}connectedCallback(){super.connectedCallback(),et(this.config)&&window.addEventListener(qe,this.activePlayerListener),window.addEventListener(Ze,this.callMediaStartedListener),window.addEventListener(Je,this.callMediaDoneListener)}disconnectedCallback(){window.removeEventListener(qe,this.activePlayerListener),super.disconnectedCallback()}haCardStyle(e){return rt({color:"var(--secondary-text-color)",height:`${e}rem`,minWidth:`${e}rem`,maxWidth:`${e}rem`,overflow:"hidden"})}footerStyle(){return rt({height:"5rem",paddingBottom:"1rem"})}contentStyle(e){return rt({overflowY:"auto",height:`${e}rem`})}setConfig(e){const t=JSON.parse(JSON.stringify(e));for(const[e,A]of Object.entries(t))Array.isArray(A)&&0===A.length&&delete t[e];const A=t.sections;this.section=A?A.includes(tA)?tA:A.includes(eA)?eA:A.includes(_t)?_t:A.includes($t)?$t:AA:tA;const i=parseInt(t.mediaBrowserItemsPerRow);t.mediaBrowserItemsPerRow=isNaN(i)?4:i,this.config=t}static get styles(){return r`
       :host {
         --mdc-icon-button-size: 3rem;
-        --mdc-icon-size: 2rem;
+        --mdc-icon-size: 2.2rem;
       }
       ha-circular-progress {
         --md-sys-color-primary: var(--accent-color);
