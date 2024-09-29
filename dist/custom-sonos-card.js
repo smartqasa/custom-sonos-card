@@ -910,8 +910,8 @@ const gt=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       </mwc-list>
     `}static get styles(){return[r`
         .button {
-          --icon-width: 45px;
-          height: 50px;
+          --icon-width: 55px;
+          height: 60px;
         }
 
         .row {
