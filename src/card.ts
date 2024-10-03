@@ -11,6 +11,8 @@ import { when } from 'lit/directives/when.js';
 import { styleMap } from 'lit-html/directives/style-map.js';
 //import { cardDoesNotContainAllSections, getHeight, getWidth } from './utils/utils';
 import { cardDoesNotContainAllSections, getHeight } from './utils/utils';
+import { deviceType } from './utils/get-device-info';
+
 
 const { GROUPING, GROUPS, MEDIA_BROWSER, PLAYER, VOLUMES } = Section;
 const TITLE_HEIGHT = 2;
@@ -170,8 +172,10 @@ export class Card extends LitElement {
 
   haCardStyle(height: number) {
     //const width = getWidth(this.config);
+    const width = deviceType === 'phone' ? "auto" : "40rem";
     return styleMap({
       color: 'var(--secondary-text-color)',
+      width: `${width}`,
       height: `${height}rem`,
       //minWidth: `20rem`,
       //maxWidth: `${width}rem`,

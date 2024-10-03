@@ -597,7 +597,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       ha-control-button[selected] {
         --control-button-background-color: var(--primary-color);
       }
-    `}}e([le()],Kt.prototype,"configArea",void 0),customElements.define("sonos-card-editor",Kt);const{GROUPING:$t,GROUPS:_t,MEDIA_BROWSER:eA,PLAYER:tA,VOLUMES:AA}=de;class iA extends se{constructor(){super(...arguments),this.showSectionListener=e=>{const t=e.detail;(!this.config.sections||this.config.sections.indexOf(t)>-1)&&(this.section=t)},this.callMediaStartedListener=e=>{this.showLoader||this.config.sections&&e.detail.section!==this.section||(this.cancelLoader=!1,setTimeout((()=>{this.cancelLoader||(this.showLoader=!0,this.loaderTimestamp=Date.now())}),300))},this.callMediaDoneListener=()=>{this.cancelLoader=!0;const e=Date.now()-this.loaderTimestamp;this.showLoader&&(e<1e3?setTimeout((()=>this.showLoader=!1),1e3-e):this.showLoader=!1)},this.activePlayerListener=e=>{var t;const A=e.detail.entityId;A!==this.activePlayerId&&(this.activePlayerId=A,(null===(t=this.config.sections)||void 0===t?void 0:t.includes(tA))&&(this.section=tA),this.requestUpdate())},this.onMediaItemSelected=()=>{var e;(null===(e=this.config.sections)||void 0===e?void 0:e.includes(tA))&&setTimeout((()=>this.section=tA),1e3)}}render(){this.createStore();let e=(t=this.config,(A=t.heightPercentage)?A/100*40:40);var t,A;const i=this.config.sections,s=!i||i.length>1,o=s?e-5:e,r=this.config.title;return e=r?e+2:e,G`
+    `}}e([le()],Kt.prototype,"configArea",void 0),customElements.define("sonos-card-editor",Kt);const $t=function(){const{width:e,height:t}=window.screen,A=window.screen.orientation.type.startsWith("portrait")?"portrait":"landscape";return"portrait"===A&&e<600&&534!=e||"landscape"===A&&t<600&&534!=t?"phone":"tablet"}(),{GROUPING:_t,GROUPS:eA,MEDIA_BROWSER:tA,PLAYER:AA,VOLUMES:iA}=de;class sA extends se{constructor(){super(...arguments),this.showSectionListener=e=>{const t=e.detail;(!this.config.sections||this.config.sections.indexOf(t)>-1)&&(this.section=t)},this.callMediaStartedListener=e=>{this.showLoader||this.config.sections&&e.detail.section!==this.section||(this.cancelLoader=!1,setTimeout((()=>{this.cancelLoader||(this.showLoader=!0,this.loaderTimestamp=Date.now())}),300))},this.callMediaDoneListener=()=>{this.cancelLoader=!0;const e=Date.now()-this.loaderTimestamp;this.showLoader&&(e<1e3?setTimeout((()=>this.showLoader=!1),1e3-e):this.showLoader=!1)},this.activePlayerListener=e=>{var t;const A=e.detail.entityId;A!==this.activePlayerId&&(this.activePlayerId=A,(null===(t=this.config.sections)||void 0===t?void 0:t.includes(AA))&&(this.section=AA),this.requestUpdate())},this.onMediaItemSelected=()=>{var e;(null===(e=this.config.sections)||void 0===e?void 0:e.includes(AA))&&setTimeout((()=>this.section=AA),1e3)}}render(){this.createStore();let e=(t=this.config,(A=t.heightPercentage)?A/100*40:40);var t,A;const i=this.config.sections,s=!i||i.length>1,o=s?e-5:e,r=this.config.title;return e=r?e+2:e,G`
       <ha-card style=${this.haCardStyle(e)}>
         <div class="loader" ?hidden=${!this.showLoader}>
           <ha-circular-progress indeterminate></ha-circular-progress></div
@@ -605,18 +605,18 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         </div>
         ${r?G`<div class="title">${r}</div>`:G``}
         <div class="content" style=${this.contentStyle(o)}>
-          ${this.activePlayerId?Et(this.section,[[tA,()=>G` <sonos-player .store=${this.store}></sonos-player>`],[_t,()=>G` <sonos-groups
+          ${this.activePlayerId?Et(this.section,[[AA,()=>G` <sonos-player .store=${this.store}></sonos-player>`],[eA,()=>G` <sonos-groups
                         .store=${this.store}
                         @active-player=${this.activePlayerListener}
-                      ></sonos-groups>`],[$t,()=>G`<sonos-grouping
+                      ></sonos-groups>`],[_t,()=>G`<sonos-grouping
                         .store=${this.store}
                         @active-player=${this.activePlayerListener}
-                      ></sonos-grouping>`],[eA,()=>G`
+                      ></sonos-grouping>`],[tA,()=>G`
                       <sonos-media-browser
                         .store=${this.store}
                         @item-selected=${this.onMediaItemSelected}
                       ></sonos-media-browser>
-                    `],[AA,()=>G` <sonos-volumes .store=${this.store}></sonos-volumes>`]]):G`<div class="no-players">No supported players found</div>`}
+                    `],[iA,()=>G` <sonos-volumes .store=${this.store}></sonos-volumes>`]]):G`<div class="no-players">No supported players found</div>`}
         </div>
         ${me(s,(()=>G`<sonos-footer
               style=${this.footerStyle()}
@@ -626,7 +626,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
             >
             </sonos-footer>`))}
       </ha-card>
-    `}createStore(){var e;this.activePlayerId?this.store=new bt(this.hass,this.config,this.section,this,this.activePlayerId):(this.store=new bt(this.hass,this.config,this.section,this),this.activePlayerId=null===(e=this.store.activePlayer)||void 0===e?void 0:e.id)}getCardSize(){return 3}static getConfigElement(){return document.createElement("sonos-card-editor")}connectedCallback(){super.connectedCallback(),et(this.config)&&window.addEventListener(qe,this.activePlayerListener),window.addEventListener(Ze,this.callMediaStartedListener),window.addEventListener(Je,this.callMediaDoneListener)}disconnectedCallback(){window.removeEventListener(qe,this.activePlayerListener),super.disconnectedCallback()}haCardStyle(e){return rt({color:"var(--secondary-text-color)",height:`${e}rem`,minWidth:`${e}rem`,maxWidth:`${e}rem`,overflow:"hidden"})}footerStyle(){return rt({height:"5rem",paddingBottom:"1rem"})}contentStyle(e){return rt({overflowY:"auto",height:`${e}rem`})}setConfig(e){const t=JSON.parse(JSON.stringify(e));for(const[e,A]of Object.entries(t))Array.isArray(A)&&0===A.length&&delete t[e];const A=t.sections;this.section=A?A.includes(tA)?tA:A.includes(eA)?eA:A.includes(_t)?_t:A.includes($t)?$t:AA:tA;const i=parseInt(t.mediaBrowserItemsPerRow);t.mediaBrowserItemsPerRow=isNaN(i)?4:i,this.config=t}static get styles(){return r`
+    `}createStore(){var e;this.activePlayerId?this.store=new bt(this.hass,this.config,this.section,this,this.activePlayerId):(this.store=new bt(this.hass,this.config,this.section,this),this.activePlayerId=null===(e=this.store.activePlayer)||void 0===e?void 0:e.id)}getCardSize(){return 3}static getConfigElement(){return document.createElement("sonos-card-editor")}connectedCallback(){super.connectedCallback(),et(this.config)&&window.addEventListener(qe,this.activePlayerListener),window.addEventListener(Ze,this.callMediaStartedListener),window.addEventListener(Je,this.callMediaDoneListener)}disconnectedCallback(){window.removeEventListener(qe,this.activePlayerListener),super.disconnectedCallback()}haCardStyle(e){return rt({color:"var(--secondary-text-color)",width:`${"phone"===$t?"auto":"40rem"}`,height:`${e}rem`,minWidth:`${e}rem`,maxWidth:`${e}rem`,overflow:"hidden"})}footerStyle(){return rt({height:"5rem",paddingBottom:"1rem"})}contentStyle(e){return rt({overflowY:"auto",height:`${e}rem`})}setConfig(e){const t=JSON.parse(JSON.stringify(e));for(const[e,A]of Object.entries(t))Array.isArray(A)&&0===A.length&&delete t[e];const A=t.sections;this.section=A?A.includes(AA)?AA:A.includes(tA)?tA:A.includes(eA)?eA:A.includes(_t)?_t:iA:AA;const i=parseInt(t.mediaBrowserItemsPerRow);t.mediaBrowserItemsPerRow=isNaN(i)?4:i,this.config=t}static get styles(){return r`
       :host {
         --mdc-icon-button-size: 3rem;
         --mdc-icon-size: 2.2rem;
@@ -653,7 +653,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         text-align: center;
         margin-top: 50%;
       }
-    `}}e([ae({attribute:!1})],iA.prototype,"hass",void 0),e([ae({attribute:!1})],iA.prototype,"config",void 0),e([le()],iA.prototype,"section",void 0),e([le()],iA.prototype,"store",void 0),e([le()],iA.prototype,"showLoader",void 0),e([le()],iA.prototype,"loaderTimestamp",void 0),e([le()],iA.prototype,"cancelLoader",void 0),e([le()],iA.prototype,"activePlayerId",void 0);class sA extends se{render(){const e=!!this.icon&&!!this.name||W;return G`
+    `}}e([ae({attribute:!1})],sA.prototype,"hass",void 0),e([ae({attribute:!1})],sA.prototype,"config",void 0),e([le()],sA.prototype,"section",void 0),e([le()],sA.prototype,"store",void 0),e([le()],sA.prototype,"showLoader",void 0),e([le()],sA.prototype,"loaderTimestamp",void 0),e([le()],sA.prototype,"cancelLoader",void 0),e([le()],sA.prototype,"activePlayerId",void 0);class oA extends se{render(){const e=!!this.icon&&!!this.name||W;return G`
       <ha-control-button selected=${this.selected||W}>
         ${this.icon?G` <ha-icon icon-and-name=${e} .icon=${this.icon}></ha-icon>`:""}
         ${this.name?G`<span>${this.name}</span>`:""}
@@ -681,7 +681,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         padding-left: 1rem;
         font-weight: bold;
       }
-    `}}e([ae()],sA.prototype,"icon",void 0),e([ae()],sA.prototype,"name",void 0),e([ae()],sA.prototype,"selected",void 0),customElements.define("sonos-grouping-button",sA);class oA{constructor(e,t,A){this.isDisabled=!1,this.isMain=e.id===t.id,this.isModified=A;const i=this.isMain||t.hasMember(e.id);this.isSelected=A?!i:i,this.player=e,this.name=e.name,this.icon=this.isSelected?"check-circle":"checkbox-blank-circle-outline"}}class rA extends se{constructor(){super(...arguments),this.modifiedItems=[]}render(){return this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.mediaControlService=this.store.mediaControlService,this.mediaPlayerIds=this.store.allMediaPlayers.map((e=>e.id)),this.groupingItems=this.getGroupingItems(),this.notJoinedPlayers=this.getNotJoinedPlayers(),this.joinedPlayers=this.getJoinedPlayers(),this.config.skipApplyButtonWhenGrouping&&(this.modifiedItems.length>0||this.selectedPredefinedGroup)&&this.applyGrouping(),G`
+    `}}e([ae()],oA.prototype,"icon",void 0),e([ae()],oA.prototype,"name",void 0),e([ae()],oA.prototype,"selected",void 0),customElements.define("sonos-grouping-button",oA);class rA{constructor(e,t,A){this.isDisabled=!1,this.isMain=e.id===t.id,this.isModified=A;const i=this.isMain||t.hasMember(e.id);this.isSelected=A?!i:i,this.player=e,this.name=e.name,this.icon=this.isSelected?"check-circle":"checkbox-blank-circle-outline"}}class nA extends se{constructor(){super(...arguments),this.modifiedItems=[]}render(){return this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.mediaControlService=this.store.mediaControlService,this.mediaPlayerIds=this.store.allMediaPlayers.map((e=>e.id)),this.groupingItems=this.getGroupingItems(),this.notJoinedPlayers=this.getNotJoinedPlayers(),this.joinedPlayers=this.getJoinedPlayers(),this.config.skipApplyButtonWhenGrouping&&(this.modifiedItems.length>0||this.selectedPredefinedGroup)&&this.applyGrouping(),G`
       <div class="wrapper">
         <div class="predefined-groups">
           ${this.renderJoinAllButton()} ${this.renderUnJoinAllButton()}
@@ -789,14 +789,14 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         .volume {
           --accent-color: var(--secondary-text-color);
         }
-      `]}toggleItem(e){e.isDisabled||this.toggleItemWithoutDisabledCheck(e)}toggleItemWithoutDisabledCheck(e){this.modifiedItems.includes(e.player.id)?this.modifiedItems=this.modifiedItems.filter((t=>t!==e.player.id)):this.modifiedItems=[...this.modifiedItems,e.player.id],this.selectedPredefinedGroup=void 0}async applyGrouping(){const e=this.groupingItems,t=this.joinedPlayers,A=this.activePlayer.id,{unJoin:i,join:s,newMainPlayer:o}=function(e,t,A){const i=e.filter((e=>e.isSelected)),s=e.filter((e=>!e.isSelected&&t.includes(e.player.id))).map((e=>e.player.id)),o=e.filter((e=>e.isSelected&&!t.includes(e.player.id))).map((e=>e.player.id));let r=A;return s.includes(A)&&(r=i[0].player.id),{unJoin:s,join:o,newMainPlayer:r}}(e,t,A);s.length>0&&await this.mediaControlService.join(o,s),i.length>0&&await this.mediaControlService.unJoin(i),this.selectedPredefinedGroup&&(console.log("Setting volume and media for predefined group",this.selectedPredefinedGroup.volume),await this.mediaControlService.setVolumeAndMediaForPredefinedGroup(this.selectedPredefinedGroup)),o===A||this.config.dontSwitchPlayerWhenGrouping||_e(o,this.config,this),this.config.entityId&&i.includes(this.config.entityId)&&this.config.dontSwitchPlayerWhenGrouping&&_e(this.config.entityId,this.config,this),this.modifiedItems=[],this.selectedPredefinedGroup=void 0}cancelGrouping(){this.modifiedItems=[]}getGroupingItems(){const e=this.store.allMediaPlayers.map((e=>new oA(e,this.activePlayer,this.modifiedItems.includes(e.id)))),t=e.filter((e=>e.isSelected));return 1===t.length&&(t[0].isDisabled=!0),e.sort(((e,t)=>e.isMain&&!t.isMain||e.isSelected&&!t.isSelected?-1:e.name.localeCompare(t.name))),e}renderJoinAllButton(){return me(this.notJoinedPlayers.length,(()=>this.groupingButton("mdi:checkbox-multiple-marked-outline",this.selectAll)))}groupingButton(e,t){return G` <sonos-grouping-button @click=${t} .icon=${e}></sonos-grouping-button> `}getNotJoinedPlayers(){return this.mediaPlayerIds.filter((e=>e!==this.activePlayer.id&&!this.activePlayer.hasMember(e)))}renderUnJoinAllButton(){return me(this.joinedPlayers.length,(()=>this.groupingButton("mdi:minus-box-multiple-outline",this.deSelectAll)))}getJoinedPlayers(){return this.mediaPlayerIds.filter((e=>e===this.activePlayer.id||this.activePlayer.hasMember(e)))}renderPredefinedGroups(){return this.store.predefinedGroups.map((e=>{var t;return G`
+      `]}toggleItem(e){e.isDisabled||this.toggleItemWithoutDisabledCheck(e)}toggleItemWithoutDisabledCheck(e){this.modifiedItems.includes(e.player.id)?this.modifiedItems=this.modifiedItems.filter((t=>t!==e.player.id)):this.modifiedItems=[...this.modifiedItems,e.player.id],this.selectedPredefinedGroup=void 0}async applyGrouping(){const e=this.groupingItems,t=this.joinedPlayers,A=this.activePlayer.id,{unJoin:i,join:s,newMainPlayer:o}=function(e,t,A){const i=e.filter((e=>e.isSelected)),s=e.filter((e=>!e.isSelected&&t.includes(e.player.id))).map((e=>e.player.id)),o=e.filter((e=>e.isSelected&&!t.includes(e.player.id))).map((e=>e.player.id));let r=A;return s.includes(A)&&(r=i[0].player.id),{unJoin:s,join:o,newMainPlayer:r}}(e,t,A);s.length>0&&await this.mediaControlService.join(o,s),i.length>0&&await this.mediaControlService.unJoin(i),this.selectedPredefinedGroup&&(console.log("Setting volume and media for predefined group",this.selectedPredefinedGroup.volume),await this.mediaControlService.setVolumeAndMediaForPredefinedGroup(this.selectedPredefinedGroup)),o===A||this.config.dontSwitchPlayerWhenGrouping||_e(o,this.config,this),this.config.entityId&&i.includes(this.config.entityId)&&this.config.dontSwitchPlayerWhenGrouping&&_e(this.config.entityId,this.config,this),this.modifiedItems=[],this.selectedPredefinedGroup=void 0}cancelGrouping(){this.modifiedItems=[]}getGroupingItems(){const e=this.store.allMediaPlayers.map((e=>new rA(e,this.activePlayer,this.modifiedItems.includes(e.id)))),t=e.filter((e=>e.isSelected));return 1===t.length&&(t[0].isDisabled=!0),e.sort(((e,t)=>e.isMain&&!t.isMain||e.isSelected&&!t.isSelected?-1:e.name.localeCompare(t.name))),e}renderJoinAllButton(){return me(this.notJoinedPlayers.length,(()=>this.groupingButton("mdi:checkbox-multiple-marked-outline",this.selectAll)))}groupingButton(e,t){return G` <sonos-grouping-button @click=${t} .icon=${e}></sonos-grouping-button> `}getNotJoinedPlayers(){return this.mediaPlayerIds.filter((e=>e!==this.activePlayer.id&&!this.activePlayer.hasMember(e)))}renderUnJoinAllButton(){return me(this.joinedPlayers.length,(()=>this.groupingButton("mdi:minus-box-multiple-outline",this.deSelectAll)))}getJoinedPlayers(){return this.mediaPlayerIds.filter((e=>e===this.activePlayer.id||this.activePlayer.hasMember(e)))}renderPredefinedGroups(){return this.store.predefinedGroups.map((e=>{var t;return G`
         <sonos-grouping-button
           @click=${async()=>this.selectPredefinedGroup(e)}
           .icon=${"mdi:speaker-multiple"}
           .name=${e.name}
           .selected=${(null===(t=this.selectedPredefinedGroup)||void 0===t?void 0:t.name)===e.name}
         ></sonos-grouping-button>
-      `}))}selectPredefinedGroup(e){this.groupingItems.forEach((async t=>{const A=e.entities.some((e=>e.player.id===t.player.id));(A&&!t.isSelected||!A&&t.isSelected)&&this.toggleItemWithoutDisabledCheck(t)})),this.selectedPredefinedGroup=e}selectAll(){this.groupingItems.forEach((e=>{e.isSelected||this.toggleItem(e)}))}deSelectAll(){this.groupingItems.forEach((e=>{(!e.isMain&&e.isSelected||e.isMain&&!e.isSelected)&&this.toggleItem(e)}))}}e([ae({attribute:!1})],rA.prototype,"store",void 0),e([le()],rA.prototype,"modifiedItems",void 0),e([le()],rA.prototype,"selectedPredefinedGroup",void 0);class nA extends se{constructor(){super(...arguments),this.selected=!1,this.dispatchEntityIdEvent=()=>{if(this.selected){_e(this.player.id,this.store.config,this)}}}render(){const e=this.store.config.hideGroupCurrentTrack?"":this.player.getCurrentTrack(),t=$e(this.player,this.store.predefinedGroups),A=this.player.attributes.icon;return G`
+      `}))}selectPredefinedGroup(e){this.groupingItems.forEach((async t=>{const A=e.entities.some((e=>e.player.id===t.player.id));(A&&!t.isSelected||!A&&t.isSelected)&&this.toggleItemWithoutDisabledCheck(t)})),this.selectedPredefinedGroup=e}selectAll(){this.groupingItems.forEach((e=>{e.isSelected||this.toggleItem(e)}))}deSelectAll(){this.groupingItems.forEach((e=>{(!e.isMain&&e.isSelected||e.isMain&&!e.isSelected)&&this.toggleItem(e)}))}}e([ae({attribute:!1})],nA.prototype,"store",void 0),e([le()],nA.prototype,"modifiedItems",void 0),e([le()],nA.prototype,"selectedPredefinedGroup",void 0);class aA extends se{constructor(){super(...arguments),this.selected=!1,this.dispatchEntityIdEvent=()=>{if(this.selected){_e(this.player.id,this.store.config,this)}}}render(){const e=this.store.config.hideGroupCurrentTrack?"":this.player.getCurrentTrack(),t=$e(this.player,this.store.predefinedGroups),A=this.player.attributes.icon;return G`
       <mwc-list-item
         hasMeta
         ?selected=${this.selected}
@@ -896,11 +896,11 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         left: 0.45rem;
         animation-duration: 407ms;
       }
-    `}}e([ae({attribute:!1})],nA.prototype,"store",void 0),e([ae({attribute:!1})],nA.prototype,"player",void 0),e([ae({type:Boolean})],nA.prototype,"selected",void 0),customElements.define("sonos-group",nA);class aA extends se{render(){return this.activePlayer=this.store.activePlayer,this.groups=this.store.allGroups,G`
+    `}}e([ae({attribute:!1})],aA.prototype,"store",void 0),e([ae({attribute:!1})],aA.prototype,"player",void 0),e([ae({type:Boolean})],aA.prototype,"selected",void 0),customElements.define("sonos-group",aA);class lA extends se{render(){return this.activePlayer=this.store.activePlayer,this.groups=this.store.allGroups,G`
       <mwc-list activatable class="list">
         ${this.groups.map((e=>{const t=this.activePlayer.id===e.id;return G` <sonos-group .store=${this.store} .player=${e} .selected=${t}></sonos-group> `}))}
       </mwc-list>
-    `}static get styles(){return Fe}}e([ae({attribute:!1})],aA.prototype,"store",void 0);class lA extends se{render(){return this.config=this.store.config,G`
+    `}static get styles(){return Fe}}e([ae({attribute:!1})],lA.prototype,"store",void 0);class cA extends se{render(){return this.config=this.store.config,G`
       <mwc-list multi class="list">
         ${pt(this.items,this.config).map(((e,t)=>G`
             ${mt(e.thumbnail,t)}
@@ -932,7 +932,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
           align-self: center;
           flex: 1;
         }
-      `,Ke,Fe]}}e([ae({attribute:!1})],lA.prototype,"store",void 0),e([ae({type:Array})],lA.prototype,"items",void 0),customElements.define("sonos-media-browser-list",lA);class cA extends se{render(){return this.config=this.store.config,G`
+      `,Ke,Fe]}}e([ae({attribute:!1})],cA.prototype,"store",void 0),e([ae({type:Array})],cA.prototype,"items",void 0),customElements.define("sonos-media-browser-list",cA);class dA extends se{render(){return this.config=this.store.config,G`
       <style>
         :host {
           --items-per-row: ${this.config.mediaBrowserItemsPerRow};
@@ -983,7 +983,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
           bottom: 0;
           background-color: rgba(var(--rgb-card-background-color), 0.733);
         }
-      `]}}e([ae({attribute:!1})],cA.prototype,"store",void 0),e([ae({attribute:!1})],cA.prototype,"items",void 0),customElements.define("sonos-media-browser-icons",cA);class dA extends se{render(){return G`
+      `]}}e([ae({attribute:!1})],dA.prototype,"store",void 0),e([ae({attribute:!1})],dA.prototype,"items",void 0),customElements.define("sonos-media-browser-icons",dA);class hA extends se{render(){return G`
       <sonos-ha-player
         hide=${this.store.config.hideBrowseMediaButton||W}
         .store=${this.store}
@@ -1008,7 +1008,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       *[hide] {
         display: none;
       }
-    `}}e([ae({attribute:!1})],dA.prototype,"store",void 0),customElements.define("sonos-media-browser-header",dA);class hA extends se{constructor(){super(...arguments),this.onMediaItemSelected=e=>{const t=e.detail;this.playItem(t),this.dispatchEvent(tt(Ye,t))}}render(){return this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.mediaBrowseService=this.store.mediaBrowseService,this.mediaControlService=this.store.mediaControlService,G`
+    `}}e([ae({attribute:!1})],hA.prototype,"store",void 0),customElements.define("sonos-media-browser-header",hA);class EA extends se{constructor(){super(...arguments),this.onMediaItemSelected=e=>{const t=e.detail;this.playItem(t),this.dispatchEvent(tt(Ye,t))}}render(){return this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.mediaBrowseService=this.store.mediaBrowseService,this.mediaControlService=this.store.mediaControlService,G`
       <sonos-media-browser-header .store=${this.store}></sonos-media-browser-header>
 
       ${this.activePlayer&&ze(this.getFavorites(this.activePlayer).then((e=>{if(null==e?void 0:e.length){return(this.config.mediaBrowserItemsPerRow||4)>1?G`
@@ -1024,12 +1024,12 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
                   @item-selected=${this.onMediaItemSelected}
                 ></sonos-media-browser-list>
               `}return G`<div class="no-items">No favorites found</div>`})))}
-    `}async playItem(e){e.media_content_type||e.media_content_id?await this.mediaControlService.playMedia(this.activePlayer,e):await this.mediaControlService.setSource(this.activePlayer,e.title)}async getFavorites(e){var t,A,i,s;let o=await this.mediaBrowseService.getFavorites(e);return o.sort(((e,t)=>this.sortOnTopFavoritesThenAlphabetically(e.title,t.title))),o=[...(null===(A=null===(t=this.config.customSources)||void 0===t?void 0:t[this.activePlayer.id])||void 0===A?void 0:A.map(hA.createSource))||[],...(null===(s=null===(i=this.config.customSources)||void 0===i?void 0:i.all)||void 0===s?void 0:s.map(hA.createSource))||[],...o],this.config.numberOfFavoritesToShow?o.slice(0,this.config.numberOfFavoritesToShow):o}sortOnTopFavoritesThenAlphabetically(e,t){var A;const i=null!==(A=this.config.topFavorites)&&void 0!==A?A:[],s=ut(i,e),o=ut(i,t);if(s>-1&&o>-1)return s-o;{let A=o-s;return 0===A&&(A=e.localeCompare(t,"en",{sensitivity:"base"})),A}}static createSource(e){return Object.assign(Object.assign({},e),{can_play:!0})}static get styles(){return r`
+    `}async playItem(e){e.media_content_type||e.media_content_id?await this.mediaControlService.playMedia(this.activePlayer,e):await this.mediaControlService.setSource(this.activePlayer,e.title)}async getFavorites(e){var t,A,i,s;let o=await this.mediaBrowseService.getFavorites(e);return o.sort(((e,t)=>this.sortOnTopFavoritesThenAlphabetically(e.title,t.title))),o=[...(null===(A=null===(t=this.config.customSources)||void 0===t?void 0:t[this.activePlayer.id])||void 0===A?void 0:A.map(EA.createSource))||[],...(null===(s=null===(i=this.config.customSources)||void 0===i?void 0:i.all)||void 0===s?void 0:s.map(EA.createSource))||[],...o],this.config.numberOfFavoritesToShow?o.slice(0,this.config.numberOfFavoritesToShow):o}sortOnTopFavoritesThenAlphabetically(e,t){var A;const i=null!==(A=this.config.topFavorites)&&void 0!==A?A:[],s=ut(i,e),o=ut(i,t);if(s>-1&&o>-1)return s-o;{let A=o-s;return 0===A&&(A=e.localeCompare(t,"en",{sensitivity:"base"})),A}}static createSource(e){return Object.assign(Object.assign({},e),{can_play:!0})}static get styles(){return r`
       .no-items {
         text-align: center;
         margin-top: 50%;
       }
-    `}}e([ae({attribute:!1})],hA.prototype,"store",void 0);const{SELECT_SOURCE:EA}=he;class gA extends se{constructor(){super(...arguments),this.showSwitches={}}render(){this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.hassService=this.store.hassService,this.mediaControlService=this.store.mediaControlService;const e=this.activePlayer.members;return G`
+    `}}e([ae({attribute:!1})],EA.prototype,"store",void 0);const{SELECT_SOURCE:gA}=he;class BA extends se{constructor(){super(...arguments),this.showSwitches={}}render(){this.config=this.store.config,this.activePlayer=this.store.activePlayer,this.hassService=this.store.hassService,this.mediaControlService=this.store.mediaControlService;const e=this.activePlayer.members;return G`
       ${me(e.length>1,(()=>this.volumeWithName(this.activePlayer)))}
       ${e.map((e=>this.volumeWithName(e,!1)))}
     `}volumeWithName(e,t=!0){var A;const i=t?null!==(A=this.config.labelForTheAllVolumesSlider)&&void 0!==A?A:"All":e.name,s=!!this.config.showVolumeUpAndDownButtons&&W,o=t||!this.showSwitches[e.id];return G` <div class="row">
@@ -1058,7 +1058,7 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
         ></ha-icon-button>
       </div>
       <div class="switches">
-        <sonos-ha-player hide=${o||W} .store=${this.store} .features=${[EA]}>
+        <sonos-ha-player hide=${o||W} .store=${this.store} .features=${[gA]}>
         </sonos-ha-player>
         ${ze(this.getAdditionalControls(o,e))}
       </div>
@@ -1126,5 +1126,5 @@ const Et=(e,t,A)=>{for(const A of t)if(A[0]===e)return(0,A[1])();return A?.()};c
       *[hide] {
         display: none;
       }
-    `}}e([ae({attribute:!1})],gA.prototype,"store",void 0),e([le()],gA.prototype,"showSwitches",void 0),customElements.define("sonos-volumes",gA);class BA extends se{render(){const e=this.store.hass.states[this.store.activePlayer.id];let t=0;this.features.forEach((e=>t+=e));const A=Object.assign(Object.assign({},e),{attributes:Object.assign(Object.assign({},e.attributes),{supported_features:t})});return G` <more-info-content .stateObj=${A} .hass=${this.store.hass}></more-info-content> `}}e([ae({attribute:!1})],BA.prototype,"store",void 0),e([ae({attribute:!1})],BA.prototype,"features",void 0),customElements.define("sonos-ha-player",BA);var QA;window.customCards.push({type:"sonos-card",name:"Sonos"+(QA?` (${QA})`:""),description:(e=>"Media player for your Sonos speakers"+(e?` (${e})`:""))(),preview:!0}),customElements.define("sonos-card",iA),customElements.define("sonos-grouping",rA),customElements.define("sonos-groups",aA),customElements.define("sonos-media-browser",hA),customElements.define("sonos-player",ht);
+    `}}e([ae({attribute:!1})],BA.prototype,"store",void 0),e([le()],BA.prototype,"showSwitches",void 0),customElements.define("sonos-volumes",BA);class QA extends se{render(){const e=this.store.hass.states[this.store.activePlayer.id];let t=0;this.features.forEach((e=>t+=e));const A=Object.assign(Object.assign({},e),{attributes:Object.assign(Object.assign({},e.attributes),{supported_features:t})});return G` <more-info-content .stateObj=${A} .hass=${this.store.hass}></more-info-content> `}}e([ae({attribute:!1})],QA.prototype,"store",void 0),e([ae({attribute:!1})],QA.prototype,"features",void 0),customElements.define("sonos-ha-player",QA);var uA;window.customCards.push({type:"sonos-card",name:"Sonos"+(uA?` (${uA})`:""),description:(e=>"Media player for your Sonos speakers"+(e?` (${e})`:""))(),preview:!0}),customElements.define("sonos-card",sA),customElements.define("sonos-grouping",nA),customElements.define("sonos-groups",lA),customElements.define("sonos-media-browser",EA),customElements.define("sonos-player",ht);
 //# sourceMappingURL=custom-sonos-card.js.map
