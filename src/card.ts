@@ -170,16 +170,14 @@ export class Card extends LitElement {
     }
   };
 
-  haCardStyle(height: number) {
+  haCardStyle(heightIn: number) {
     //const width = getWidth(this.config);
-    const width = deviceType === 'phone' ? "auto" : "40rem";
-    console.log(`width: ${width}`);
+    const width = deviceType === 'phone' ? "100%" : "40rem";
+    const height = deviceType === 'phone' ? "100%" : `${heightIn}rem`;
     return styleMap({
       color: 'var(--secondary-text-color)',
       width: width,
-      height: `${height}rem`,
-      //minWidth: `20rem`,
-      //maxWidth: `${width}rem`,
+      height: height,
       overflow: 'hidden',
     });
   }
