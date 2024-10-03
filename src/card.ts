@@ -173,9 +173,10 @@ export class Card extends LitElement {
   haCardStyle(height: number) {
     //const width = getWidth(this.config);
     const width = deviceType === 'phone' ? "auto" : "40rem";
+    console.log(`width: ${width}`);
     return styleMap({
       color: 'var(--secondary-text-color)',
-      width: `${width}`,
+      width: width,
       height: `${height}rem`,
       //minWidth: `20rem`,
       //maxWidth: `${width}rem`,
