@@ -215,6 +215,10 @@ export class Card extends LitElement {
     }
     const itemsPerRow = parseInt(newConfig.mediaBrowserItemsPerRow);
     newConfig.mediaBrowserItemsPerRow = isNaN(itemsPerRow) ? 4 : itemsPerRow;
+    // support custom:auto-entities
+    if (newConfig.entities?.length && newConfig.entities[0].entity) {
+      newConfig.entities = newConfig.entities.map((entity: { entity: string }) => entity.entity);
+    }
     this.config = newConfig;
   }
 
