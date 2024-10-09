@@ -5,7 +5,6 @@ import Store from '../model/store';
 import { CardConfig, MediaPlayerEntityFeature } from '../types';
 import { mdiVolumeMinus, mdiVolumePlus } from '@mdi/js';
 import { MediaPlayer } from '../model/media-player';
-import { when } from 'lit/directives/when.js';
 import { until } from 'lit-html/directives/until.js';
 
 const { SHUFFLE_SET, REPEAT_SET, PLAY, PAUSE, NEXT_TRACK, PREVIOUS_TRACK, BROWSE_MEDIA } = MediaPlayerEntityFeature;
@@ -21,16 +20,11 @@ class PlayerControls extends LitElement {
     this.config = this.store.config;
     this.activePlayer = this.store.activePlayer;
     this.mediaControlService = this.store.mediaControlService;
-
     const noUpDown = !!this.config.showVolumeUpAndDownButtons && nothing;
-    const noBrowseMedia = !!this.config.showBrowseMediaInPlayerSection && nothing;
     this.volumePlayer = this.activePlayer.getMember(this.config.playerVolumeEntityId) ?? this.activePlayer;
     return html`
       <div class="main" id="mediaControls">
-        ${when(
-          ['paused', 'playing'].includes(this.activePlayer.state),
-          () => html`
-            <div class="icons">
+          <div class="icons">
               <div class="flex-1"></div>
               <ha-icon-button hide=${noUpDown} @click=${this.volDown} .path=${mdiVolumeMinus}></ha-icon-button>
               <sonos-ha-player .store=${this.store} .features=${[SHUFFLE_SET, PREVIOUS_TRACK]}></sonos-ha-player>
@@ -49,8 +43,12 @@ class PlayerControls extends LitElement {
             ></sonos-volume>
           `,
         )}
+              <sonos-ha-player .store=${this.store} .features=${this.showBrowseMedia()}></sonos-ha-player>
+          </div>
+          <sonos-volume .store=${this.store} .player=${this.volumePlayer}
+                       .updateMembers=${!this.config.playerVolumeEntityId}></sonos-volume>
       </div>
-    `;
+  `;
   }
   private volDown = async () =>
     await this.mediaControlService.volumeDown(this.volumePlayer, !this.config.playerVolumeEntityId);
@@ -74,7 +72,7 @@ class PlayerControls extends LitElement {
         display: flex;
         align-items: center;
       }
-      .icons > *[hide] {
+      *[hide] {
         display: none;
       }
       .big-icon {

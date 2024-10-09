@@ -213,12 +213,15 @@ export class Card extends LitElement {
     } else {
       this.section = PLAYER;
     }
-    const itemsPerRow = parseInt(newConfig.mediaBrowserItemsPerRow);
-    newConfig.mediaBrowserItemsPerRow = isNaN(itemsPerRow) ? 4 : itemsPerRow;
+    newConfig.mediaBrowserItemsPerRow = newConfig.mediaBrowserItemsPerRow || 4;
     // support custom:auto-entities
     if (newConfig.entities?.length && newConfig.entities[0].entity) {
       newConfig.entities = newConfig.entities.map((entity: { entity: string }) => entity.entity);
     }
+    newConfig.entityPlatform = 'sonos'; //#ONLY_SONOS_CARD
+    if (newConfig.showNonSonosPlayers /*#ONLY_SONOS_CARD*/) {
+      newConfig.entityPlatform = undefined; //#ONLY_SONOS_CARD
+    } //#ONLY_SONOS_CARD
     this.config = newConfig;
   }
 

@@ -48,6 +48,7 @@ export interface CardConfig extends LovelaceCardConfig {
   numberOfFavoritesToShow?: number;
   hideBrowseMediaButton?: boolean;
   showAudioInputFormat?: boolean;
+  entityPlatform?: string;
   showNonSonosPlayers?: boolean;
   fallbackArtwork?: string;
   entitiesToIgnoreVolumeLevelFor?: string[];

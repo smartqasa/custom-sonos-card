@@ -7,13 +7,16 @@ import {
   ConfigPredefinedGroup,
   ConfigPredefinedGroupPlayer,
   HomeAssistantWithEntities,
+  MediaPlayerEntityFeature,
   PredefinedGroup,
   PredefinedGroupPlayer,
   Section,
 } from '../types';
-import { getGroupPlayerIds } from '../utils/utils';
+import { getGroupPlayerIds, supportsTurnOn } from '../utils/utils';
 import { MediaPlayer } from './media-player';
 import { HassEntity } from 'home-assistant-js-websocket';
+
+const { TURN_OFF, TURN_ON } = MediaPlayerEntityFeature;
 
 export default class Store {
   public hass: HomeAssistant;
@@ -120,14 +123,12 @@ export default class Store {
     return Object.values(hass.states)
       .filter((hassEntity) => {
         if (hassEntity.entity_id.includes('media_player')) {
-          const platform = hassWithEntities.entities?.[hassEntity.entity_id]?.platform;
-          const hasGrouping = !!hassEntity.attributes?.group_members;
-          if ((!platform && hasGrouping) || this.config.showNonSonosPlayers || platform === 'sonos') {
-            if (configEntities.length) {
-              const includesEntity = configEntities.includes(hassEntity.entity_id);
-              return !!this.config.excludeItemsInEntitiesList !== includesEntity;
-            }
-            return true;
+          if (this.config.entityPlatform) {
+            const platform = hassWithEntities.entities?.[hassEntity.entity_id]?.platform;
+            return platform === this.config.entityPlatform;
+          } else if (configEntities.length) {
+            const includesEntity = configEntities.includes(hassEntity.entity_id);
+            return !!this.config.excludeItemsInEntitiesList !== includesEntity;
           }
         }
         return false;
