@@ -693,3 +693,13 @@ card_mod:
         font-size: 12px !important;
       }
 ```
+
+### Example 24 - Hide the select all/none buttons at the top of the groupings page
+```
+card_mod:
+  style:
+    sonos-grouping$: |
+      sonos-grouping-button {            
+        display: none;
+      }  
+```
