@@ -27,26 +27,22 @@ class PlayerControls extends LitElement {
           <div class="icons">
               <div class="flex-1"></div>
               <ha-icon-button hide=${noUpDown} @click=${this.volDown} .path=${mdiVolumeMinus}></ha-icon-button>
-              <sonos-ha-player .store=${this.store} .features=${[SHUFFLE_SET, PREVIOUS_TRACK]}></sonos-ha-player>
+              <sonos-ha-player .store=${this.store} .features=${this.showShuffle()}></sonos-ha-player>
+              <sonos-ha-player .store=${this.store} .features=${this.showPrev()}></sonos-ha-player>
               <sonos-ha-player .store=${this.store} .features=${[PLAY, PAUSE]} class="big-icon"></sonos-ha-player>
-              <sonos-ha-player .store=${this.store} .features=${[NEXT_TRACK, REPEAT_SET]}></sonos-ha-player>
+              <sonos-ha-player .store=${this.store} .features=${this.showNext()}></sonos-ha-player>
+              <sonos-ha-player .store=${this.store} .features=${this.showRepeat()}></sonos-ha-player>
               <ha-icon-button hide=${noUpDown} @click=${this.volUp} .path=${mdiVolumePlus}></ha-icon-button>
               <div class="audio-input-format">
                 ${this.config.showAudioInputFormat && until(this.getAudioInputFormat())}
               </div>
-              <sonos-ha-player hide=${noBrowseMedia} .store=${this.store} .features=${[BROWSE_MEDIA]}></sonos-ha-player>
-            </div>
-            <sonos-volume
-              .store=${this.store}
-              .player=${this.volumePlayer}
-              .updateMembers=${!this.config.playerVolumeEntityId}
-            ></sonos-volume>
-          `,
-        )}
               <sonos-ha-player .store=${this.store} .features=${this.showBrowseMedia()}></sonos-ha-player>
           </div>
           <sonos-volume .store=${this.store} .player=${this.volumePlayer}
                        .updateMembers=${!this.config.playerVolumeEntityId}></sonos-volume>
+          <div class="icons">
+              <sonos-ha-player .store=${this.store} .features=${this.store.showPower(true)}></sonos-ha-player>
+          </div">
       </div>
   `;
   }
@@ -62,6 +58,27 @@ class PlayerControls extends LitElement {
       ? html`<div>${audioInputFormat.state}</div>`
       : '';
   }
+
+  private showShuffle() {
+    return this.config.hidePlayerControlShuffleButton ? [] : [SHUFFLE_SET];
+  }
+
+  private showPrev() {
+    return this.config.hidePlayerControlPrevTrackButton ? [] : [PREVIOUS_TRACK];
+  }
+
+  private showNext() {
+    return this.config.hidePlayerControlNextTrackButton ? [] : [NEXT_TRACK];
+  }
+
+  private showRepeat() {
+    return this.config.hidePlayerControlRepeatButton ? [] : [REPEAT_SET];
+  }
+
+  private showBrowseMedia() {
+    return this.config.showBrowseMediaInPlayerSection ? [BROWSE_MEDIA] : [];
+  }
+
   static get styles() {
     return css`
       .main {

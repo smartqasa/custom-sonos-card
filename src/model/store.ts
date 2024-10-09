@@ -182,4 +182,16 @@ export default class Store {
   private getActivePlayerFromUrl() {
     return window.location.href.includes('#') ? window.location.href.replace(/.*#/g, '') : '';
   }
+
+  showPower(hideIfOn = false) {
+    if (this.config.hidePlayerControlPowerButton) {
+      return [];
+    } else if (!supportsTurnOn(this.activePlayer)) {
+      return [];
+    } else if (hideIfOn && 'off' !== this.activePlayer.state) {
+      return [];
+    } else {
+      return [TURN_ON, TURN_OFF];
+    }
+  }
 }
