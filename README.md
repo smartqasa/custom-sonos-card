@@ -738,4 +738,15 @@ card_mod:
       }  
 ```
 
+### Example 25 - reduce min-width of the card
+```
+widthPercentage: 30
+card_mod:
+  style:
+    .: |
+      ha-card {            
+        min-width: 10rem !important;
+      }  
+```
+
 <!-- //#ONLY_SONOS_CARD_END -->
