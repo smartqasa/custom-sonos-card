@@ -18,13 +18,7 @@ export const ENTITIES_RENAME_SCHEMA = [
   },
 ];
 
-const SHOW_NON_SONOS_PLAYERS = /*#ONLY_SONOS_CARD*/ {
-  name: 'showNonSonosPlayers', //#ONLY_SONOS_CARD
-  help: 'Show all media players, including those that are not on the Sonos platform', //#ONLY_SONOS_CARD
-  selector: { boolean: {} }, //#ONLY_SONOS_CARD
-}; //#ONLY_SONOS_CARD
 export const ENTITIES_SCHEMA = [
-  SHOW_NON_SONOS_PLAYERS, //#ONLY_SONOS_CARD
   {
     name: 'entityId',
     help: 'Not needed, but forces this player to be the selected one on loading the card (overrides url param etc)',
@@ -32,17 +26,34 @@ export const ENTITIES_SCHEMA = [
   },
   {
     name: 'entities',
-    help: 'Required, unless you have specified entity platform', //#ONLY_MXMP_CARD
+    help: 'Required, unless you have specified entity platform',
+    cardType: 'maxi',
     selector: { entity: { multiple: true, filter: { domain: 'media_player' } } },
+  },
+  {
+    name: 'entities',
+    help: "Not needed, unless you don't want to include all of them",
+    cardType: 'sonos',
+    selector: { entity: { multiple: true, filter: { domain: 'media_player' } } },
+  },
+  {
+    name: 'showNonSonosPlayers',
+    help: 'Show all media players, including those that are not on the Sonos platform',
+    cardType: 'sonos',
+    selector: { boolean: {} },
   },
 ];
 
 class EntitiesEditor extends BaseEditor {
   @state() editGroup!: number;
   private entitiesSchema = ENTITIES_SCHEMA;
+
   protected render(): TemplateResult {
     const predefinedGroups = this.config.predefinedGroups;
-    this.entitiesSchema[0].help = "Not needed, unless you don't want to include all of them"; //#ONLY_SONOS_CARD
+
+    this.entitiesSchema = ENTITIES_SCHEMA.filter(
+      (schema) => schema.cardType === undefined || this.config.type.indexOf(schema.cardType) > -1,
+    );
     return this.editGroup > -1
       ? html`<sonos-card-predefined-group-editor
           .index=${this.editGroup}
