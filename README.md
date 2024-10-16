@@ -19,11 +19,11 @@ Sonos Card for Home Assistant UI with a focus on managing multiple media players
 
 and more!
 
-![player.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/player.png)
-![media_browser.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/media_browser.png)
-![groups.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/groups.png)
-![grouping.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/grouping.png)
-![volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/volumes.png)
+![player.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/player.png)
+![media_browser.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/media_browser.png)
+![groups.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/groups.png)
+![grouping.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/grouping.png)
+![volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/volumes.png)
 
 ## Support the project
 
@@ -237,7 +237,7 @@ As mentioned earlier, use the individual sections for more layout flexibility.
 
 Here is an example:
 
-![sections.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/sections.png)
+![sections.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/sections.png)
 ```yaml
 type: horizontal-stack
 cards:
@@ -281,7 +281,7 @@ To determine what to configure for a button do the following:
 7. Use these values to configure the custom source.
 
 Example:
-![custom_sources.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/custom_sources.png)
+![custom_sources.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/custom_sources.png)
     
 ```yaml
 type: custom:sonos-card
@@ -299,7 +299,7 @@ The volume level slider is dynamically adjusting its scale. If volume is below 2
 20% it will show a scale up to 100%. The color will also change from green to red clearly indicating which scale is
 being used.
 
-![dynamic_volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/dynamic_volumes.png)
+![dynamic_volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/dynamic_volumes.png)
 
 Enable it in config with `dynamicVolumeSlider: true`
 
@@ -331,14 +331,14 @@ card_mod:
 
 The above YAML renders the following:
 
-![styling.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/styling.png)
+![styling.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/styling.png)
 
 <!-- //#ONLY_SONOS_CARD_START -->
 ### More card_mod examples
 
 ### Example 1
 
-![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod.png)
 
 ##### Groups
 
@@ -702,7 +702,7 @@ card_mod:
       }
 ```
 
-![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod_2.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_2.png)
 
 ### Example 19 - Changing the font size of song title
 
@@ -730,7 +730,7 @@ card_mod:
       }
 ```
 
-![img.png](https://github.com/punxaphil/custom-sonos-card/raw/master/img/card_mod_3.png)
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_3.png)
 
 ### Example 21 - Size of group buttons
 

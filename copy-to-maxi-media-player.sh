@@ -12,7 +12,6 @@ find ../maxi-media-player -name "*" \
   -exec gsed -i "s/'Sonos'/'Maxi Media Player'/g" {} \; \
   -exec gsed -i 's/custom-sonos-card/maxi-media-player/g' {} \; \
   -exec gsed -i 's/custom:sonos-card/custom:maxi-media-player/g' {} \; \
-  -exec gsed -i 's/raw\/master/raw\/main/g' {} \; \
   -exec gsed -i 's/sonos-card-/mxmp-/g' {} \; \
   -exec gsed -i 's/sonos-/mxmp-/g' {} \; \
   -exec gsed -i 's/sonos-card-dispatch/mxmp-dispatch/g' {} \; \
