@@ -146,6 +146,10 @@ predefinedGroups: # defaults to empty
       - media_player.tv
 skipApplyButtonWhenGrouping: true # default is false. Will skip the apply button when grouping.
 dontSwitchPlayerWhenGrouping: true # default is false. Will not switch to another player if main player is ungrouped.
+groupingButtonIcons: # Use this to set custom icons for the grouping buttons.
+  predefinedGroup: mdi:account-group # default is mdi:speaker-multiple
+  joinAll: mdi:account-multiple # default is mdi:checkbox-multiple-marked-outline
+  unJoinAll: mdi:account-remove # default is mdi:minus-box-multiple-outline
 
 # player specific
 hidePlayerControlNextTrackButton: true # default is false, hides player control next track button.
