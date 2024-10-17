@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-rsync --exclude='copy-to-maxi-media-player.sh' --exclude='*.DS_Store' --exclude='coverage' --exclude='node_modules' --exclude='.git' --exclude='.idea' --exclude='dist' . ../maxi-media-player
+rsync -a --exclude='copy-to-maxi-media-player.sh' --exclude='*.DS_Store' --exclude='coverage' --exclude='node_modules' --exclude='.git' --exclude='.idea' --exclude='dist' . ../maxi-media-player
 
 find ../maxi-media-player -name "*" \
   -not -path "*/.idea/*" \
