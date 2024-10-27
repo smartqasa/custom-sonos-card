@@ -342,162 +342,19 @@ The above YAML renders the following:
 <!-- //#ONLY_SONOS_CARD_START -->
 ### More card_mod examples
 
-### Example 1
+### Example 1 - Reduce margin for grouping list items
 
-![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod.png)
-
-##### Groups
+![card_mod_grouping_margin.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_grouping_margin.png)
 
 ```yaml
 card_mod:
   style:
-    ha-card.type-custom-sonos-card>div.content>sonos-groups$mwc-list>sonos-group:
-      $: |
-        mwc-list-item[hasmeta] {
-          background: var(--theme-card-background-glass);
-          border: 1px solid var(--theme-card-border-glass);
-          height: 61.4468px!important;
-          border-radius: var(--theme-card-border-radius);
-          margin: 12px 0px 0px 0px;
-        }
-        mwc-list-item[activated] {
-          --mdc-ripple-color: none;
-        }
-        mwc-list-item>div>div>span:nth-child(1) {
-          color: var(--primary-text-color);
-          font-size: 14px;
-          font-weight: 700;
-          line-height: 15.4px;
-        }
-        mwc-list-item>div>div>span:nth-child(2) {
-          color: var(--secondary-text-color);
-          font-size: 12px;
-          font-weight: 700;
-          line-height: 13.2px;
-        }
-        mwc-list-item > div > ha-icon {
-          color: rgb(var(--mush-rgb-disabled));
-          background: rgba(var(--mush-rgb-disabled), 0.2);
-          --mdc-icon-size: 30px;
-          min-width: 40px;
-          min-height: 40px;
-          max-width: 40px;
-          max-height: 40px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        mwc-list-item[activated] > div > ha-icon {
-          color: rgb(var(--mush-rgb-blue));
-          background: rgba(var(--mush-rgb-blue), 0.2);
-        }
-    ha-card.type-custom-sonos-card>div.content>sonos-groups$mwc-list>sonos-group:nth-child(1)$: |
-      mwc-list-item[hasmeta] {
-        margin-top: 4px;
+    sonos-groups$ sonos-group$: |
+      mwc-list-item {
+        margin: 5px !important;
       }
-    .: |
-      ha-card {
-        background: none;
-        border: none;
-        --accent-color: none;
-        --primary-color: var(--primary-text-color);
-        --secondary-background-color: none;
-      }
-```
-
-##### Player
-```yaml
-card_mod:
-  style:
-    sonos-player:
-      $:
-        sonos-player-header$: |
-          .info .song {
-            color: var(--primary-text-color);
-            font-weight: 600;
-            font-size: 20px;
-          }
-    .: |
-      ha-card {
-        --primary-color: none;
-        --secondary-background-color: none;
-      }
-```
-
-##### Grouping
-```yaml
-card_mod:
-  style:
-    sonos-grouping:
-      $: |
-        ha-control-button {
-          height: 36px;
-          width: auto;
-          min-width: 36px;
-          border-width: 1px;
-          border-color: var(--theme-card-border-glass);
-          --control-button-background-color: var(--theme-card-background-glass)!important;
-          --mdc-ripple-color: none;
-          --control-button-background-opacity: 1;
-          --control-button-border-radius: 18px;
-        }
-        ha-control-button span {
-          color: var(--primary-text-color);
-          line-height: 14.4px;
-          font-weight: 700;
-          font-size: 14px;
-        }
-        ha-control-button ha-icon {
-          color: var(--primary-color);
-          
-        }
-        mwc-list.list>mwc-list-item {
-          background: var(--theme-card-background-glass);
-          border: 1px solid var(--theme-card-border-glass);
-          height: 61.4468px;
-          border-radius: var(--theme-card-border-radius);
-          margin: 12px 2px 0px 2px;
-        }
-        mwc-list>mwc-list-item:nth-child(1) {
-          margin-top: 0;
-        }
-        mwc-list.list>mwc-list-item[activated] {
-          --mdc-ripple-color: none;
-        }
-        mwc-list.list>mwc-list-item>ha-icon {
-          margin-right: 10px;
-          display: flex;
-          color: rgb(var(--mush-rgb-disabled));
-          background-color: rgba(var(--mush-rgb-disabled), 0.2);
-          min-width: 40px;
-          min-height: 40px;
-          border-radius: 50%;
-          opacity: 1;
-          align-items: center;
-          justify-content: center;
-        }
-        mwc-list.list>mwc-list-item[activated]>ha-icon {
-          color: rgb(var(--mush-rgb-blue));
-          background: rgba(var(--mush-rgb-blue), 0.2);
-        }
-        mwc-list.list>mwc-list-item>span {
-          opacity: 1;
-          color: var(--primary-text-color);
-        }
-    div.content>sonos-grouping$mwc-list.list>mwc-list-item:
-      $: |
-        span.mdc-deprecated-list-item__text>slot {
-          display: flex;
-          align-items: center;
-        }
-    .: |
-      ha-card {
-        background: none;
-        border-color: transparent;
-        --accent-color: none;
-        --primary-color: var(--primary-text-color);
-        --secondary-background-color: none;
+      .row {
+        margin: 0 !important;
       }
 ```
 
