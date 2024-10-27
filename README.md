@@ -92,7 +92,7 @@ entityPlatform: sonos # will select all entities for this platform. Will overrid
 <!-- //#ONLY_SONOS_CARD_START -->
 ```yaml
 type: custom:sonos-card
-entities: # Entities are automatically discovered if you don't supply this setting
+entities: # Entities are automatically discovered if you don't supply this setting. You can also use this sort your entities in a specific order (instead of alphabetically).
   - media_player.sonos_kitchen
   - media_player.sonos_hallway
   - media_player.sonos_bedroom
@@ -314,6 +314,22 @@ Enable it in config with `dynamicVolumeSlider: true`
 Append `#media_player.my_sonos_player` to page URL to have that player selected.
 
 If `entityId` is configured for the card, the url param will be ignored. See more in the Usage section above.
+
+## Sort order of entities
+
+If you want to have a custom sorting for your entities in the groups section you can use the `entities` configuration. 
+Default is otherwise to sort by entity name.
+
+Example:
+```yaml
+type: custom:sonos-card
+entities:
+  - media_player.sonos_kitchen
+  - media_player.sonos_hallway
+  - media_player.sonos_bedroom
+  - media_player.sonos_livingroom
+```
+
 
 ## CSS Styling
 
