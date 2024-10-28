@@ -45,7 +45,7 @@ export default class HassService {
   }
 
   async getRelatedEntities(player: MediaPlayer, ...entityTypes: string[]) {
-    return new Promise<HassEntity[]>(async (resolve, reject) => {
+    return new Promise<HassEntity[]>(async (resolve) => {
       const subscribeMessage = {
         type: 'render_template',
         template: "{{ device_entities(device_id('" + player.id + "')) }}",
@@ -59,8 +59,8 @@ export default class HassService {
               .map((item) => this.hass.states[item]),
           );
         }, subscribeMessage);
-      } catch (e) {
-        reject(e);
+      } catch {
+        resolve([]);
       }
     });
   }
