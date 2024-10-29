@@ -66,7 +66,7 @@ export class MediaBrowserIcons extends LitElement {
         .title {
           font-size: 0.8rem;
           position: absolute;
-          width: 100%;
+          width: 90%;
           line-height: 160%;
           bottom: 0;
           background-color: rgba(var(--rgb-card-background-color), 0.733);
