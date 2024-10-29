@@ -48,7 +48,7 @@ export interface CardConfig extends LovelaceCardConfig {
   predefinedGroups?: ConfigPredefinedGroup[];
   title?: string;
   labelWhenNoMediaIsSelected?: string;
-  labelForTheAllVolumesSlider: string;
+  labelForTheAllVolumesSlider?: string;
   entityNameRegexToReplace?: string;
   entityNameReplacement?: string;
   artworkHostname?: string;
