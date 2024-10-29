@@ -66,7 +66,9 @@ export function getWidth(config: CardConfig) {
 }
 
 export function getGroupPlayerIds(hassEntity: HassEntity): string[] {
-  return hassEntity.attributes.group_members || [hassEntity.entity_id];
+  let groupMembers = hassEntity.attributes.group_members;
+  groupMembers = groupMembers?.filter((id: string) => id !== null && id !== undefined);
+  return groupMembers?.length ? groupMembers : [hassEntity.entity_id];
 }
 
 export function supportsTurnOn(player: MediaPlayer) {
