@@ -3902,7 +3902,8 @@ class MediaBrowserIcons extends h {
           width: 90%;
           line-height: 160%;
           bottom: 0;
-          background-color: rgba(var(--rgb-card-background-color), 0.733);
+          color: var(--primary-text-color);
+          background-color: rgba(var(--rgb-card-background-color), 0.85);
         }
       `
     ];
