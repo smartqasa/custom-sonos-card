@@ -3872,7 +3872,7 @@ class MediaBrowserIcons extends h {
       width: size,
       height: size,
       margin,
-      padding: 0
+      "--control-button-padding": 0
     });
   }
   static get styles() {
@@ -3884,6 +3884,10 @@ class MediaBrowserIcons extends h {
           flex-wrap: wrap;
           justify-content: center;
           padding: 0 1rem;
+        }
+
+        .button {
+          --control-button-padding: 0;
         }
 
         .thumbnail {

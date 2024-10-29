@@ -53,7 +53,7 @@ export class MediaBrowserIcons extends LitElement {
       width: size,
       height: size,
       margin: margin,
-      padding: 0,
+      '--control-button-padding': 0,
     });
   }
 
@@ -66,6 +66,10 @@ export class MediaBrowserIcons extends LitElement {
           flex-wrap: wrap;
           justify-content: center;
           padding: 0 1rem;
+        }
+
+        .button {
+          --control-button-padding: 0;
         }
 
         .thumbnail {
