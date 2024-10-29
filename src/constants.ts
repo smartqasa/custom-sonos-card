@@ -31,3 +31,14 @@ export const mediaItemTitleStyle = css`
     white-space: nowrap;
   }
 `;
+
+export const mediaBrowserTitleStyle = css`
+  .title {
+    color: var(--secondary-text-color);
+    font-weight: bold;
+    padding: 0 0.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+`;

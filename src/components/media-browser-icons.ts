@@ -63,6 +63,17 @@ export class MediaBrowserIcons extends LitElement {
         .icons {
           display: flex;
           flex-wrap: wrap;
+          justify-content: center;
+          padding: 0 1rem;
+        }
+
+        .button {
+          --control-button-padding: 0;
+          --margin: 1%;
+          --width: calc(100% / var(--items-per-row) - var(--margin) * 3);
+          width: var(--width);
+          height: var(--width);
+          margin: var(--margin);
         }
 
         .thumbnail {

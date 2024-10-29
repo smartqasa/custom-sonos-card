@@ -1,9 +1,9 @@
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import Store from '../model/store';
 import { CardConfig, MediaPlayerItem } from '../types';
 import { customEvent } from '../utils/utils';
-import { listStyle, MEDIA_ITEM_SELECTED } from '../constants';
+import { listStyle, MEDIA_ITEM_SELECTED, mediaBrowserTitleStyle } from '../constants';
 import { itemsWithFallbacks } from '../utils/media-browser-utils';
 
 export class MediaBrowserList extends LitElement {
@@ -29,7 +29,34 @@ export class MediaBrowserList extends LitElement {
   }
 
   static get styles() {
-    return listStyle;
+    return [
+      css`
+        .button {
+          --icon-width: 55px;
+          height: 60px;
+        }
+
+        .row {
+          display: flex;
+        }
+
+        .thumbnail {
+          width: var(--icon-width);
+          height: var(--icon-width);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: left;
+        }
+
+        .title {
+          font-size: 1.1rem;
+          align-self: center;
+          flex: 1;
+        }
+      `,
+      mediaBrowserTitleStyle,
+      listStyle,
+    ];
   }
 }
 

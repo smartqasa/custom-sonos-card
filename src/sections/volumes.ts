@@ -99,9 +99,12 @@ export class Volumes extends LitElement {
       .row {
         display: flex;
         flex-direction: column;
+        /*
         padding-top: 0.3rem;
         padding-right: 1rem;
         padding-bottom: 0.2rem;
+        */
+        padding: 0.3rem 1rem 0.2rem 1rem;
       }
 
       .row:not(:first-child) {
