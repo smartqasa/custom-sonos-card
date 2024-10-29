@@ -3886,10 +3886,6 @@ class MediaBrowserIcons extends h {
           padding: 0 1rem;
         }
 
-        .button {
-          --control-button-padding: 0;
-        }
-
         .thumbnail {
           width: 100%;
           padding-bottom: 100%;
