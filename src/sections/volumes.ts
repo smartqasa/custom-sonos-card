@@ -34,7 +34,7 @@ class Volumes extends LitElement {
   }
 
   private volumeWithName(player: MediaPlayer, updateMembers = true) {
-    const name = updateMembers ? this.config.labelForTheAllVolumesSlider ?? 'All' : player.name;
+    const name = updateMembers ? (this.config.labelForTheAllVolumesSlider ?? 'All') : player.name;
     const volDown = async () => await this.mediaControlService.volumeDown(player, updateMembers);
     const volUp = async () => await this.mediaControlService.volumeUp(player, updateMembers);
     const noUpDown = !!this.config.showVolumeUpAndDownButtons && nothing;
@@ -97,9 +97,12 @@ class Volumes extends LitElement {
       .row {
         display: flex;
         flex-direction: column;
+        /*
         padding-top: 0.3rem;
         padding-right: 1rem;
         padding-bottom: 0.2rem;
+        */
+        padding: 0.3rem 1rem 0.2rem 1rem;
       }
 
       .row:not(:first-child) {

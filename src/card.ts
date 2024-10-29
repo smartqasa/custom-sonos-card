@@ -9,7 +9,8 @@ import './editor/editor';
 import { ACTIVE_PLAYER_EVENT, CALL_MEDIA_DONE, CALL_MEDIA_STARTED } from './constants';
 import { when } from 'lit/directives/when.js';
 import { styleMap } from 'lit-html/directives/style-map.js';
-import { cardDoesNotContainAllSections, getHeight, getWidth, isSonosCard } from './utils/utils';
+import { cardDoesNotContainAllSections, getHeight, isSonosCard } from './utils/utils';
+import { deviceType } from './utils/device-info';
 
 const { GROUPING, GROUPS, MEDIA_BROWSER, PLAYER, VOLUMES } = Section;
 const TITLE_HEIGHT = 2;
@@ -168,12 +169,14 @@ export class Card extends LitElement {
   };
 
   haCardStyle(height: number) {
-    const width = getWidth(this.config);
+    //const width = getWidth(this.config);
+    const width = deviceType === 'phone' ? 'auto' : '40rem';
     return styleMap({
       color: 'var(--secondary-text-color)',
+      width: `${width}`,
       height: `${height}rem`,
-      minWidth: `20rem`,
-      maxWidth: `${width}rem`,
+      //minWidth: `20rem`,
+      //maxWidth: `${width}rem`,
       overflow: 'hidden',
     });
   }
@@ -231,7 +234,7 @@ export class Card extends LitElement {
     return css`
       :host {
         --mdc-icon-button-size: 3rem;
-        --mdc-icon-size: 2rem;
+        --mdc-icon-size: 2.2rem;
       }
       ha-circular-progress {
         --md-sys-color-primary: var(--accent-color);
