@@ -3878,15 +3878,15 @@ class MediaBrowserIcons extends h {
     return [
       mediaBrowserTitleStyle,
       i$2`
+        :host {
+          --control-button-padding: 0;
+        }
+
         .icons {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           padding: 0 1rem;
-        }
-
-        .button {
-          --control-button-padding: 0;
         }
 
         .thumbnail {
