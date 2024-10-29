@@ -66,7 +66,7 @@ export class MediaBrowserIcons extends LitElement {
           justify-content: center;
           padding: 0 1rem;
         }
-
+        /*
         .button {
           --control-button-padding: 0;
           --margin: 1%;
@@ -75,8 +75,9 @@ export class MediaBrowserIcons extends LitElement {
           height: var(--width);
           margin: var(--margin);
         }
-
+*/
         .thumbnail {
+          --control-button-padding: 0;
           width: 100%;
           padding-bottom: 100%;
           margin: 0 6%;
