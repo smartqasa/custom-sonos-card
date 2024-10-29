@@ -38,6 +38,7 @@ export class MediaBrowserIcons extends LitElement {
       width: size,
       height: size,
       margin: margin,
+      padding: 0,
     });
   }
 
@@ -45,10 +46,6 @@ export class MediaBrowserIcons extends LitElement {
     return [
       mediaBrowserTitleStyle,
       css`
-        :host {
-          --control-button-padding: 0;
-        }
-
         .icons {
           display: flex;
           flex-wrap: wrap;
