@@ -136,6 +136,14 @@ export const ADVANCED_SCHEMA = [
     name: 'showBrowseMediaInPlayerSection',
     selector: { boolean: {} },
   },
+  {
+    type: 'string',
+    name: 'mediaTitleNameRegexToReplace',
+  },
+  {
+    type: 'string',
+    name: 'mediaTitleNameReplacement',
+  },
 ];
 
 class AdvancedEditor extends BaseEditor {

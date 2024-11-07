@@ -35,7 +35,7 @@ const element = {
   dispatchEvent: elemDispatchEvent,
 } as unknown as Element;
 
-function newConfig(config: Partial<CardConfig>) {
+export function newConfig(config: Partial<CardConfig>) {
   return { type: 'custom:sonos-card', sections: [], ...config };
 }
 
