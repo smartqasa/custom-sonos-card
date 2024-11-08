@@ -45,10 +45,10 @@ export class MediaPlayer {
     if (!track) {
       track = this.attributes.media_content_id?.replace(/.*:\/\//g, '') ?? '';
     }
-    if (this.config.mediaTitleNameRegexToReplace) {
+    if (this.config.mediaTitleRegexToReplace) {
       track = track.replace(
-        new RegExp(this.config.mediaTitleNameRegexToReplace, 'g'),
-        this.config.mediaTitleNameReplacement || '',
+        new RegExp(this.config.mediaTitleRegexToReplace, 'g'),
+        this.config.mediaTitleReplacement || '',
       );
     }
     return track;

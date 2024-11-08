@@ -138,11 +138,11 @@ export const ADVANCED_SCHEMA = [
   },
   {
     type: 'string',
-    name: 'mediaTitleNameRegexToReplace',
+    name: 'mediaTitleRegexToReplace',
   },
   {
     type: 'string',
-    name: 'mediaTitleNameReplacement',
+    name: 'mediaTitleReplacement',
   },
 ];
 

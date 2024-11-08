@@ -33,8 +33,8 @@ describe('MediaPlayer', () => {
 
     config = newConfig({
       entitiesToIgnoreVolumeLevelFor: ['media_player.ignore'],
-      mediaTitleNameRegexToReplace: 'Title',
-      mediaTitleNameReplacement: 'Replaced Title',
+      mediaTitleRegexToReplace: 'Title',
+      mediaTitleReplacement: 'Replaced Title',
       adjustVolumeRelativeToMainPlayer: true,
     });
 
@@ -78,8 +78,8 @@ describe('MediaPlayer', () => {
     mediaPlayer.attributes.media_title = '';
     expect(mediaPlayer.getCurrentTrack()).toBe('example.com');
     mediaPlayer.attributes.media_title = 'chimes.wav?skip=10';
-    config.mediaTitleNameRegexToReplace = '.wav?.*';
-    config.mediaTitleNameReplacement = ' radio';
+    config.mediaTitleRegexToReplace = '.wav?.*';
+    config.mediaTitleReplacement = ' radio';
     expect(mediaPlayer.getCurrentTrack()).toBe('chimes radio');
   });
 
