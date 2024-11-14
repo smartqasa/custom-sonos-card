@@ -204,7 +204,8 @@ export class Card extends LitElement {
         delete newConfig[key];
       }
     }
-    const sections = newConfig.sections || Object.values(Section);
+    const sections =
+      newConfig.sections || Object.values(Section).filter((section) => !isSonosCard(newConfig) || section !== QUEUE);
     if (newConfig.startSection && sections.includes(newConfig.startSection)) {
       this.section = newConfig.startSection;
     } else if (sections) {
