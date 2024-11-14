@@ -87,7 +87,7 @@ export class MediaPlayer {
     if (this.members.length > 1 && this.config.adjustVolumeRelativeToMainPlayer) {
       volume = this.getAverageVolume();
     } else {
-      volume = 100 * this.volumePlayer.attributes.volume_level;
+      volume = 100 * (this.volumePlayer.attributes.volume_level || 0);
     }
     return Math.round(volume);
   }
@@ -95,7 +95,7 @@ export class MediaPlayer {
   private getAverageVolume() {
     const volumes = this.members
       .filter((m) => !this.config.entitiesToIgnoreVolumeLevelFor?.includes(m.id))
-      .map((m) => m.attributes.volume_level);
+      .map((m) => m.attributes.volume_level || 0);
     return (100 * volumes.reduce((a, b) => a + b, 0)) / volumes.length;
   }
 }

@@ -103,5 +103,7 @@ describe('MediaPlayer', () => {
     expect(mediaPlayer.getVolume()).toBe(50);
     mediaPlayer.members.push(new MediaPlayer(hassEntity1, config));
     expect(mediaPlayer.getVolume()).toBe(50);
+    mediaPlayer.attributes.volume_level = undefined;
+    expect(mediaPlayer.getVolume()).toBe(0);
   });
 });
