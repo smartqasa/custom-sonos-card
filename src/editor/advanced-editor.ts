@@ -148,6 +148,11 @@ export const ADVANCED_SCHEMA = [
     type: 'string',
     name: 'mediaTitleReplacement',
   },
+  {
+    name: 'footerHeight',
+    type: 'integer',
+    valueMin: 0,
+  },
 ];
 
 class AdvancedEditor extends BaseEditor {
