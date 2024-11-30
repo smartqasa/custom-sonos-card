@@ -17,6 +17,7 @@ Sonos Card for Home Assistant UI with a focus on managing multiple media players
 * Dynamic volume level slider
 * Track progress bar
 * Show, play and remove tracks of play queue
+* Set and clear sleep timer 
 
 and more!
 

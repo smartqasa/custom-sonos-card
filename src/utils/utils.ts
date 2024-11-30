@@ -92,7 +92,8 @@ export function getGroupingChanges(groupingItems: GroupingItem[], joinedPlayers:
   return { unJoin, join, newMainPlayer };
 }
 
-export function entityMatchSonos(config: CardConfig, entityId: string, hassWithEntities: HomeAssistantWithEntities) {
+export function entityMatchSonos(config: CardConfig, entity: HassEntity, hassWithEntities: HomeAssistantWithEntities) {
+  const entityId = entity.entity_id;
   const configEntities = [...new Set(config.entities)];
   let includeEntity = true;
   if (configEntities.length) {
@@ -100,19 +101,20 @@ export function entityMatchSonos(config: CardConfig, entityId: string, hassWithE
     includeEntity = !!config.excludeItemsInEntitiesList !== includesEntity;
   }
   let matchesPlatform = true;
+  entity.attributes.platform = hassWithEntities.entities?.[entityId]?.platform;
   if (config.entityPlatform) {
-    const platform = hassWithEntities.entities?.[entityId]?.platform;
-    matchesPlatform = platform === config.entityPlatform;
+    matchesPlatform = entity.attributes.platform === config.entityPlatform;
   }
   return includeEntity && matchesPlatform;
 }
 
-export function entityMatchMxmp(config: CardConfig, entityId: string, hassWithEntities: HomeAssistantWithEntities) {
+export function entityMatchMxmp(config: CardConfig, entity: HassEntity, hassWithEntities: HomeAssistantWithEntities) {
+  const entityId = entity.entity_id;
   const configEntities = [...new Set(config.entities)];
   let matchesPlatform = false;
+  entity.attributes.platform = hassWithEntities.entities?.[entityId]?.platform;
   if (config.entityPlatform) {
-    const platform = hassWithEntities.entities?.[entityId]?.platform;
-    matchesPlatform = platform === config.entityPlatform;
+    matchesPlatform = entity.attributes.platform === config.entityPlatform;
   }
   let includeEntity = false;
   if (configEntities.length) {

@@ -127,12 +127,11 @@ export default class Store {
   public getMediaPlayerHassEntities(hass: HomeAssistant) {
     const hassWithEntities = hass as HomeAssistantWithEntities;
     const filtered = Object.values(hass.states).filter((hassEntity) => {
-      const entityId = hassEntity.entity_id;
-      if (entityId.includes('media_player')) {
+      if (hassEntity.entity_id.includes('media_player')) {
         if (isSonosCard(this.config)) {
-          return entityMatchSonos(this.config, entityId, hassWithEntities);
+          return entityMatchSonos(this.config, hassEntity, hassWithEntities);
         } else {
-          return entityMatchMxmp(this.config, entityId, hassWithEntities);
+          return entityMatchMxmp(this.config, hassEntity, hassWithEntities);
         }
       }
       return false;

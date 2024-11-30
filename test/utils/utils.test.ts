@@ -39,6 +39,17 @@ export function newConfig(config: Partial<CardConfig>) {
   return { type: 'custom:sonos-card', sections: [], ...config };
 }
 
+function hassEntity(entity: string) {
+  return {
+    entity_id: entity,
+    attributes: {},
+    context: { id: '', user_id: null, parent_id: null },
+    state: 'on',
+    last_changed: '',
+    last_updated: '',
+  };
+}
+
 describe('Utils', () => {
   beforeEach(() => {
     entityOne.attributes.group_members = [];
@@ -255,10 +266,10 @@ describe('Utils', () => {
         ['entity1', {}, true],
         ['entity4', {}, true],
         ['entity4', { entityPlatform: 'sonos' }, false],
-      ])('when entity is %j, config is %j: should return %j', (entity, config, expected) => {
+      ])('when entity is %j, config is %j: should return %j', (entity_id, config, expected) => {
         // Act
 
-        const result = entityMatchSonos(newConfig(config), entity, hassWithEntities);
+        const result = entityMatchSonos(newConfig(config), hassEntity(entity_id), hassWithEntities);
 
         // Assert
         expect(result).toBe(expected);
@@ -279,11 +290,11 @@ describe('Utils', () => {
         ['entity1', {}, false],
         ['entity4', {}, false],
         ['entity4', { entityPlatform: 'sonos' }, false],
-      ])('when entity is %j, config is %j: should return %j', (entity, config, expected) => {
+      ])('when entity is %j, config is %j: should return %j', (entity_id, config, expected) => {
         // Act
         const result = entityMatchMxmp(
           newConfig({ ...config, type: 'custom:maxi-media-player' }),
-          entity,
+          hassEntity(entity_id),
           hassWithEntities,
         );
 

@@ -9,6 +9,7 @@ import MediaControlService from '../services/media-control-service';
 import { MediaPlayer } from '../model/media-player';
 import HassService from '../services/hass-service';
 import { HassEntity } from 'home-assistant-js-websocket';
+import '../components/sleep-timer';
 
 const { SELECT_SOURCE } = MediaPlayerEntityFeature;
 
@@ -64,13 +65,14 @@ export class Volumes extends LitElement {
           show-switches=${this.showSwitches[player.id] || nothing}
         ></ha-icon-button>
       </div>
-      <div class="switches">
-        <sonos-ha-player hide=${hideSwitches || nothing} .store=${this.store} .features=${[SELECT_SOURCE]}>
-        </sonos-ha-player>
+      <div class="switches" hide=${hideSwitches || nothing}>
+        <sonos-ha-player .store=${this.store} .features=${[SELECT_SOURCE]}> </sonos-ha-player>
         ${until(this.getAdditionalControls(hideSwitches, player))}
+        <sonos-sleep-timer .store=${this.store} .player=${player}></sonos-sleep-timer>
       </div>
     </div>`;
   }
+
   private toggleShowSwitches(player: MediaPlayer) {
     this.showSwitches[player.id] = !this.showSwitches[player.id];
     this.requestUpdate();
