@@ -673,4 +673,16 @@ card_mod:
       }  
 ```
 
+### Example 26 - Padding and border around grouping items
+```
+card_mod:
+  style:
+    sonos-grouping$: |
+      .item {
+        padding-top: 0rem !important;
+        padding-bottom: 0 !important;
+        border-bottom: 1px solid #333;
+      }  
+```
+![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_4.png)
 <!-- //#ONLY_SONOS_CARD_END -->
