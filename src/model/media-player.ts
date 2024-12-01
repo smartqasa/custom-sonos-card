@@ -1,6 +1,6 @@
 import { HassEntity } from 'home-assistant-js-websocket';
 import { CardConfig } from '../types';
-import { getGroupPlayerIds } from '../utils/utils';
+import { findPlayer, getGroupPlayerIds } from '../utils/utils';
 
 export class MediaPlayer {
   id: string;
@@ -24,7 +24,7 @@ export class MediaPlayer {
   }
 
   getMember(playerId?: string) {
-    return this.members.find((member) => member.id === playerId);
+    return findPlayer(this.members, playerId);
   }
 
   hasMember(playerId: string) {
