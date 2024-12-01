@@ -7,7 +7,7 @@ find ../maxi-media-player -name "*" \
   -not -path "*/node_modules/*" \
   -not -path "*/coverage/*" -type f \
   -exec gsed -i '/\/\/#ONLY_SONOS_CARD_START/,/\/\/#ONLY_SONOS_CARD_END/d' {} \; \
-  -exec gsed -i 's/.*#ONLY_SONOS_CARD.*//g' {} \; \
+  -exec gsed -i ':a;N;$!ba;s/[^\n]*#ONLY_SONOS_CARD[^\n]*\n//g' {} \; \
   -exec gsed -i "s/'sonos-card'/'maxi-media-player'/g" {} \; \
   -exec gsed -i "s/'Sonos'/'Maxi Media Player'/g" {} \; \
   -exec gsed -i 's/custom-sonos-card/maxi-media-player/g' {} \; \

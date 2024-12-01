@@ -59,6 +59,7 @@ export const ADVANCED_SCHEMA = [
   {
     name: 'queueTitle',
     type: 'string',
+    cardType: 'sonos',
   },
   {
     name: 'artworkHostname',

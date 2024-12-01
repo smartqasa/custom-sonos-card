@@ -16,8 +16,8 @@ Sonos Card for Home Assistant UI with a focus on managing multiple media players
 * Configurable styling
 * Dynamic volume level slider
 * Track progress bar
-* Show, play and remove tracks of play queue
-* Set and clear sleep timer 
+* Show, play and remove tracks of play queue <!-- //#ONLY_SONOS_CARD -->
+* Set and clear sleep timer <!-- //#ONLY_SONOS_CARD -->
 
 and more!
 
@@ -26,7 +26,7 @@ and more!
 ![groups.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/groups.png)
 ![grouping.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/grouping.png)
 ![volumes.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/volumes.png)
-![queue.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/queue.png)
+![queue.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/queue.png) <!-- //#ONLY_SONOS_CARD -->
 
 ## Support the project
 
@@ -115,8 +115,8 @@ sections: # see explanation further up
   - grouping
   - media browser
   - player
-  - queue
-startSection: queue # default is player. Use this to set the default section to show. 
+  - queue <!-- //#ONLY_SONOS_CARD -->
+startSection: queue # default is player. Use this to set the default section to show. <!-- //#ONLY_SONOS_CARD --> 
 widthPercentage: 75 # default is 100. Use this to change the width of the card.
 heightPercentage: 75 # default is 100. Use this to change the height of the card. Set to 'auto' to make the card height adjust to the content.
 footerHeight: 4 # default is 5. Unit is 'rem'. Use this to change the height of the footer.
@@ -245,8 +245,8 @@ mediaBrowserTitle: My favorites # default is 'All favorites'. Use this to change
 # volumes specific
 hideVolumeCogwheel: true # default is false. Will hide the cogwheel for the volumes section.
 
-# queue specific
-queueTitle: Songs # default is 'Play Queue'. Use this to change the title for the queue section.
+# queue specific <!-- //#ONLY_SONOS_CARD -->
+queueTitle: Songs # default is 'Play Queue'. Use this to change the title for the queue section. <!-- //#ONLY_SONOS_CARD -->
 ```
 
 ## Using individual section cards
