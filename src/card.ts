@@ -206,7 +206,7 @@ export class Card extends LitElement {
       }
     }
     const sections =
-      newConfig.sections || Object.values(Section).filter((section) => !isSonosCard(newConfig) || section !== QUEUE);
+      newConfig.sections || Object.values(Section).filter((section) => isSonosCard(newConfig) || section !== QUEUE);
     if (newConfig.startSection && sections.includes(newConfig.startSection)) {
       this.section = newConfig.startSection;
     } else if (sections) {
@@ -218,7 +218,7 @@ export class Card extends LitElement {
             ? GROUPS
             : sections.includes(GROUPING)
               ? GROUPING
-              : sections.includes(QUEUE)
+              : sections.includes(QUEUE) && isSonosCard(newConfig)
                 ? QUEUE
                 : VOLUMES;
     } else {
