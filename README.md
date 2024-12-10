@@ -458,10 +458,10 @@ card_mod:
 ```yaml
 card_mod:
   style:
-    sonos-media-browser$: |
-      .button {
+    sonos-media-browser$ sonos-media-browser-icons$: |
+      ha-control-button {
         --control-button-padding: 4px;
-      }
+      }  
 ```
 
 ### Example 8 - Remove artwork in player section
