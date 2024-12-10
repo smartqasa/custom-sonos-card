@@ -3,6 +3,11 @@ DIR="dist-maxi-media-player"
 FILE="maxi-media-player.js"
 mkdir -p $DIR
 
+if ! command -v gsed >/dev/null 2>&1
+then
+    alias gsed=sed
+fi
+
 cp dist/custom-sonos-card.js $DIR/$FILE
 cd $DIR || exit
 gsed -i 's/"sonos-card"/"maxi-media-player"/g' $FILE
