@@ -55,6 +55,9 @@ jobs:
         run: |
           cd mxmp
           cp ../dist-maxi-media-player/README.md .
+          rm -rf img
+          mkdir img
+          cp ../img/* img/
           diff=$(git diff)
           if [ ! -z $diff ]
           then 
