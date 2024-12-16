@@ -1,5 +1,3 @@
-name: Release
-
 on:
   push:
     tags:
@@ -7,7 +5,6 @@ on:
 
 jobs:
   release:
-    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,48 +19,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build the file
+      - name: Build
         run: |
-          cd /home/runner/work/custom-sonos-card/custom-sonos-card
           npm install
           npm run build
-          sh create-dist-maxi-media-player.sh
 
-      - name: Create Release
+      - name: Create Release (Sonos)
         uses: softprops/action-gh-release@v2
         with:
           body: ${{steps.build_changelog.outputs.changelog}}
           prerelease: true
-          files: /home/runner/work/custom-sonos-card/custom-sonos-card/dist/custom-sonos-card.js
+          files: "${GITHUB_WORKSPACE}/dist/custom-sonos-card.js"
 
-      - name: Create Release
+      - name: Create Release (Mxmp)
         uses: softprops/action-gh-release@v2
         with:
           body: ${{steps.build_changelog.outputs.changelog}}
           repository: punxaphil/maxi-media-player
           prerelease: true
           token: ${{ secrets.PAT_TOKEN }}
-          files: /home/runner/work/custom-sonos-card/custom-sonos-card/dist-maxi-media-player/maxi-media-player.js
+          files: "${GITHUB_WORKSPACE}/dist-maxi-media-player/maxi-media-player.js"
 
-      - uses: actions/checkout@v4
-        with:
-          repository: punxaphil/maxi-media-player
-          token:  ${{ secrets.PAT_TOKEN }}
-          path: mxmp
-
-      - name: setup git config
-        run: |
-          cd mxmp
-          cp ../dist-maxi-media-player/README.md .
-          rm -rf img
-          mkdir img
-          cp ../img/* img/
-          diff=$(git diff)
-          if [ ! -z "$diff" ]
-          then 
-            git config user.name "Johan Frick"
-            git config user.email "johan.frick@gmail.com"
-            git commit -am"updated README.md"
-            git push origin main
-          fi
-          

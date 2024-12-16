@@ -355,7 +355,6 @@ The above YAML renders the following:
 
 ![styling.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/styling.png)
 
-<!-- //#ONLY_SONOS_CARD_START -->
 ### More card_mod examples
 
 ### Example 1 - Reduce margin for grouping list items
@@ -675,4 +674,4 @@ card_mod:
       }  
 ```
 ![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_4.png)
-<!-- //#ONLY_SONOS_CARD_END -->
+

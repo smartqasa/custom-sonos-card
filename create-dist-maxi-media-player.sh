@@ -3,6 +3,11 @@ DIR="dist-maxi-media-player"
 FILE="maxi-media-player.js"
 mkdir -p $DIR
 
+# Use gsed on Mac
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias sed=gsed
+fi
+
 cp dist/custom-sonos-card.js $DIR/$FILE
 cd $DIR || exit
 sed -i 's/"sonos-card"/"maxi-media-player"/g' $FILE
@@ -22,3 +27,4 @@ sed -i ':a;N;$!ba;s/[^\n]*#ONLY_SONOS_CARD[^\n]*\n//g' $FILE
 sed -i 's/custom-sonos-card/maxi-media-player/g' $FILE
 sed -i 's/custom:sonos-card/custom:maxi-media-player/g' $FILE
 sed -i 's/Sonos Card/Maxi Media Player/g' $FILE
+sed -i 's/sonos-/mxmp-/g' $FILE
