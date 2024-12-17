@@ -461,7 +461,7 @@ card_mod:
       }
 ```
 
-### Example 9 - Hide volume slider
+### Example 9 - Hide volume slider and mute icon
 
 ```yaml
 card_mod:
