@@ -29,7 +29,7 @@ jobs:
         with:
           body: ${{steps.build_changelog.outputs.changelog}}
           prerelease: true
-          files: "${GITHUB_WORKSPACE}/dist/custom-sonos-card.js"
+          files: "${{ github.workspace }}/dist/custom-sonos-card.js"
 
       - name: Create Release (Mxmp)
         uses: softprops/action-gh-release@v2
@@ -38,5 +38,5 @@ jobs:
           repository: punxaphil/maxi-media-player
           prerelease: true
           token: ${{ secrets.PAT_TOKEN }}
-          files: "${GITHUB_WORKSPACE}/dist-maxi-media-player/maxi-media-player.js"
+          files: "${{ github.workspace }}/dist-maxi-media-player/maxi-media-player.js"
 
