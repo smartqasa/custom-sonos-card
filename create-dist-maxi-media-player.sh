@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+shopt -s expand_aliases # Use aliases in script
+
 DIR="dist-maxi-media-player"
 FILE="maxi-media-player.js"
 mkdir -p $DIR
@@ -7,7 +9,6 @@ mkdir -p $DIR
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias sed=gsed
 fi
-
 cp dist/custom-sonos-card.js $DIR/$FILE
 cd $DIR || exit
 sed -i 's/"sonos-card"/"maxi-media-player"/g' $FILE
