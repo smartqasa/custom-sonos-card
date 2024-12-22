@@ -100,6 +100,7 @@ export interface CardConfig extends LovelaceCardConfig {
   mediaTitleRegexToReplace?: string;
   mediaTitleReplacement?: string;
   stopInsteadOfPause?: boolean;
+  inverseGroupMuteState?: boolean;
 }
 
 export interface MediaArtworkOverride {

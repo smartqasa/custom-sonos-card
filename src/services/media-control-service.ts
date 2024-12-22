@@ -127,7 +127,8 @@ export default class MediaControlService {
   }
 
   async toggleMute(mediaPlayer: MediaPlayer, updateMembers = true) {
-    const muteVolume = !mediaPlayer.isMuted(updateMembers);
+    const isMuted = updateMembers ? mediaPlayer.isGroupMuted() : mediaPlayer.isMemberMuted();
+    const muteVolume = !isMuted;
     await this.setVolumeMute(mediaPlayer, muteVolume, updateMembers);
   }
 

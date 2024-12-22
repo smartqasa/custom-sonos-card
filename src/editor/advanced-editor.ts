@@ -157,6 +157,10 @@ export const ADVANCED_SCHEMA = [
     name: 'stopInsteadOfPause',
     selector: { boolean: {} },
   },
+  {
+    name: 'inverseGroupMuteState',
+    selector: { boolean: {} },
+  },
 ];
 
 class AdvancedEditor extends BaseEditor {
