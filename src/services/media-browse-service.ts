@@ -1,7 +1,7 @@
 import { CardConfig, MediaPlayerItem } from '../types';
 import HassService from './hass-service';
 import { MediaPlayer } from '../model/media-player';
-import { indexOfWithoutSpecialChars } from '../utils/media-browser-utils';
+import { stringContainsAnyItemInArray } from '../utils/media-browser-utils';
 
 export default class MediaBrowseService {
   private hassService: HassService;
@@ -20,9 +20,12 @@ export default class MediaBrowseService {
     favorites = favorites.flatMap((f) => f);
     favorites = this.removeDuplicates(favorites);
     favorites = favorites.length ? favorites : this.getFavoritesFromStates(player);
-    return favorites.filter(
-      (item) => indexOfWithoutSpecialChars(this.config.favoritesToIgnore ?? [], item.title) === -1,
-    );
+    const favoritesToIgnore = this.config.favoritesToIgnore ?? [];
+    return favorites.filter((item) => {
+      const titleNotIgnored = !stringContainsAnyItemInArray(favoritesToIgnore, item.title);
+      const contentIdNotIgnored = !stringContainsAnyItemInArray(favoritesToIgnore, item.media_content_id ?? '');
+      return titleNotIgnored && contentIdNotIgnored;
+    });
   }
 
   private removeDuplicates(items: MediaPlayerItem[]) {
