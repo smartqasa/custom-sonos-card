@@ -23,7 +23,7 @@ export class Card extends LitElement {
   @state() showLoader!: boolean;
   @state() loaderTimestamp!: number;
   @state() cancelLoader!: boolean;
-  @state() activePlayerId!: string;
+  @state() activePlayerId?: string;
 
   render() {
     this.createStore();
@@ -121,6 +121,10 @@ export class Card extends LitElement {
     }
     window.addEventListener(CALL_MEDIA_STARTED, this.callMediaStartedListener);
     window.addEventListener(CALL_MEDIA_DONE, this.callMediaDoneListener);
+    window.addEventListener('hashchange', () => {
+      this.activePlayerId = undefined;
+      this.createStore();
+    });
   }
 
   disconnectedCallback() {
