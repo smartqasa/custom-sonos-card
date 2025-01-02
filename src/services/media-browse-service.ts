@@ -36,7 +36,17 @@ export default class MediaBrowseService {
 
   private async getFavoritesForPlayer(player: MediaPlayer) {
     try {
-      const favoritesRoot = await this.hassService.browseMedia(player, 'favorites', '');
+      const root = await this.hassService.browseMedia(player);
+      const favorites = root.children?.find(
+        (child) =>
+          child.media_content_type?.toLowerCase() === 'favorites' ||
+          child.media_content_id?.toLowerCase() === 'favorites' ||
+          child.title.toLowerCase() === 'favorites',
+      );
+      if (!favorites) {
+        return [];
+      }
+      const favoritesRoot = await this.hassService.browseMedia(player, favorites.media_content_type, '');
       const favoriteTypesPromise = favoritesRoot.children?.map((favoriteItem) =>
         this.hassService.browseMedia(player, favoriteItem.media_content_type, favoriteItem.media_content_id),
       );
