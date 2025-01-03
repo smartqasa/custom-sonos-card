@@ -36,25 +36,41 @@ export default class MediaBrowseService {
 
   private async getFavoritesForPlayer(player: MediaPlayer) {
     try {
-      const root = await this.hassService.browseMedia(player);
-      const favorites = root.children?.find(
+      const mediaRoot = await this.hassService.browseMedia(player);
+      const favoritesStr = 'favorites';
+      const favoritesDir = mediaRoot.children?.find(
         (child) =>
-          child.media_content_type?.toLowerCase() === 'favorites' ||
-          child.media_content_id?.toLowerCase() === 'favorites' ||
-          child.title.toLowerCase() === 'favorites',
+          child.media_content_type?.toLowerCase() === favoritesStr ||
+          child.media_content_id?.toLowerCase() === favoritesStr ||
+          child.title.toLowerCase() === favoritesStr,
       );
-      if (!favorites) {
+      if (!favoritesDir) {
         return [];
       }
-      const favoritesRoot = await this.hassService.browseMedia(player, favorites.media_content_type, '');
-      const favoriteTypesPromise = favoritesRoot.children?.map((favoriteItem) =>
-        this.hassService.browseMedia(player, favoriteItem.media_content_type, favoriteItem.media_content_id),
-      );
-      const favoriteTypes = favoriteTypesPromise ? await Promise.all(favoriteTypesPromise) : [];
-      return favoriteTypes.flatMap((item) => item.children ?? []);
+      const favorites: MediaPlayerItem[] = [];
+      await this.browseDir(player, favoritesDir, favorites);
+      return favorites;
     } catch (e) {
       console.error(`Sonos Card: error getting favorites for player ${player.id}: ${JSON.stringify(e)}`);
       return [];
+    }
+  }
+
+  private async browseDir(player: MediaPlayer, favoritesDir: MediaPlayerItem, favorites: MediaPlayerItem[]) {
+    console.log('browsing dir', favoritesDir.title);
+    const dir = await this.hassService.browseMedia(
+      player,
+      favoritesDir.media_content_type,
+      favoritesDir.media_content_id,
+    );
+    for (const child of dir.children ?? []) {
+      if (child.can_expand) {
+        await this.browseDir(player, child, favorites);
+      }
+      if (child.can_play) {
+        console.log('adding favorite', child.title);
+        favorites.push(child);
+      }
     }
   }
 
