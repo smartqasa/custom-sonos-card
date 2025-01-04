@@ -128,8 +128,8 @@ export interface CustomFavoriteThumbnails {
 }
 
 export interface MediaPlayerItem {
-  can_play: boolean;
-  can_expand: boolean;
+  can_play?: boolean;
+  can_expand?: boolean;
   title: string;
   thumbnail?: string;
   children?: MediaPlayerItem[];

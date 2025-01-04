@@ -35,25 +35,20 @@ export default class MediaBrowseService {
   }
 
   private async getFavoritesForPlayer(player: MediaPlayer) {
-    try {
-      const mediaRoot = await this.hassService.browseMedia(player);
-      const favoritesStr = 'favorites';
-      const favoritesDir = mediaRoot.children?.find(
-        (child) =>
-          child.media_content_type?.toLowerCase() === favoritesStr ||
-          child.media_content_id?.toLowerCase() === favoritesStr ||
-          child.title.toLowerCase() === favoritesStr,
-      );
-      if (!favoritesDir) {
-        return [];
-      }
-      const favorites: MediaPlayerItem[] = [];
-      await this.browseDir(player, favoritesDir, favorites);
-      return favorites;
-    } catch (e) {
-      console.error(`Sonos Card: error getting favorites for player ${player.id}: ${JSON.stringify(e)}`);
+    const mediaRoot = await this.hassService.browseMedia(player);
+    const favoritesStr = 'favorites';
+    const favoritesDir = mediaRoot.children?.find(
+      (child) =>
+        child.media_content_type?.toLowerCase() === favoritesStr ||
+        child.media_content_id?.toLowerCase() === favoritesStr ||
+        child.title.toLowerCase() === favoritesStr,
+    );
+    if (!favoritesDir) {
       return [];
     }
+    const favorites: MediaPlayerItem[] = [];
+    await this.browseDir(player, favoritesDir, favorites);
+    return favorites;
   }
 
   private async browseDir(player: MediaPlayer, favoritesDir: MediaPlayerItem, favorites: MediaPlayerItem[]) {
