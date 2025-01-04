@@ -57,19 +57,16 @@ export default class MediaBrowseService {
   }
 
   private async browseDir(player: MediaPlayer, favoritesDir: MediaPlayerItem, favorites: MediaPlayerItem[]) {
-    console.log('browsing dir', favoritesDir.title);
     const dir = await this.hassService.browseMedia(
       player,
       favoritesDir.media_content_type,
       favoritesDir.media_content_id,
     );
     for (const child of dir.children ?? []) {
-      if (child.can_expand) {
-        await this.browseDir(player, child, favorites);
-      }
       if (child.can_play) {
-        console.log('adding favorite', child.title);
         favorites.push(child);
+      } else if (child.can_expand) {
+        await this.browseDir(player, child, favorites);
       }
     }
   }
