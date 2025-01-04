@@ -56,7 +56,10 @@ export class MediaBrowser extends LitElement {
               return html`<div class="no-items">No favorites found</div>`;
             }
           })
-          .catch((e) => html`<div class="no-items">Failed to fetch list of favorites. ${e}</div>`),
+          .catch(
+            (e) =>
+              html`<div class="no-items">Failed to fetch list of favorites. ${e.message ?? JSON.stringify(e)}</div>`,
+          ),
       )}
     `;
   }
