@@ -707,3 +707,21 @@ card_mod:
 ```
 ![img.png](https://github.com/punxaphil/custom-sonos-card/raw/main/img/card_mod_4.png)
 
+#### Example 27 - Larger icons in the player section
+```
+type: custom:sonos-card
+card_mod:
+  style:
+    sonos-player$ sonos-player-controls$: |
+      .icons {
+        margin-bottom: 1rem;
+      }
+      sonos-ha-player,ha-icon-button {
+        --mdc-icon-size: 3rem !important;
+        --mdc-icon-button-size: 4rem !important;
+      }  
+      .big-icon {
+        --mdc-icon-size: 7rem !important;
+        --mdc-icon-button-size: 4rem !important;
+      }  
+```
