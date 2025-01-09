@@ -52,7 +52,7 @@ export function stringContainsAnyItemInArray(array: string[], str: string) {
   return !!array.find((value) => str.includes(value));
 }
 
-export function itemsWithFallbacks(mediaPlayerItems: MediaPlayerItem[], config: CardConfig) {
+export function itemsWithFallbacks(mediaPlayerItems: MediaPlayerItem[], config: CardConfig): MediaPlayerItem[] {
   const itemsWithImage = hasItemsWithImage(mediaPlayerItems);
   return mediaPlayerItems.map((item) => {
     const thumbnail = getThumbnail(item, config, itemsWithImage);

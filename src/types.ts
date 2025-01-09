@@ -101,6 +101,7 @@ export interface CardConfig extends LovelaceCardConfig {
   mediaTitleReplacement?: string;
   stopInsteadOfPause?: boolean;
   inverseGroupMuteState?: boolean;
+  sortFavoritesByType?: boolean;
 }
 
 export interface MediaArtworkOverride {
@@ -137,6 +138,7 @@ export interface MediaPlayerItem {
   media_class?: string;
   media_content_type?: string;
   media_content_id?: string;
+  favoriteType?: string;
 }
 
 export interface PredefinedGroup<T = PredefinedGroupPlayer> {

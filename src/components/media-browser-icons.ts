@@ -1,4 +1,4 @@
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
 import Store from '../model/store';
 import { CardConfig, MediaPlayerItem } from '../types';
@@ -15,20 +15,35 @@ export class MediaBrowserIcons extends LitElement {
   render() {
     this.config = this.store.config;
 
+    const items = itemsWithFallbacks(this.items, this.config);
+    let prevType: string | undefined = '';
+    this.sortItemsByFavoriteTypeIfConfigured(items);
     return html`
       <div class="icons">
-        ${itemsWithFallbacks(this.items, this.config).map(
-          (item) => html`
+        ${items.map((item) => {
+          const showFavoriteType = (this.config.sortFavoritesByType && item.favoriteType !== prevType) || nothing;
+          const toRender = html`
+            <div class="favorite-type" show=${showFavoriteType}>${item.favoriteType}</div>
             <ha-control-button
               style=${this.buttonStyle(this.config.favoritesItemsPerRow || 4)}
               @click=${() => this.dispatchEvent(customEvent(MEDIA_ITEM_SELECTED, item))}
             >
               ${renderMediaBrowserItem(item, !item.thumbnail || !this.config.favoritesHideTitleForThumbnailIcons)}
             </ha-control-button>
-          `,
-        )}
+          `;
+          prevType = item.favoriteType;
+          return toRender;
+        })}
       </div>
     `;
+  }
+
+  private sortItemsByFavoriteTypeIfConfigured(items: MediaPlayerItem[]) {
+    if (this.config.sortFavoritesByType) {
+      items.sort((a, b) => {
+        return a.favoriteType?.localeCompare(b.favoriteType ?? '') || a.title.localeCompare(b.title);
+      });
+    }
   }
 
   private buttonStyle(favoritesItemsPerRow: number) {
@@ -66,6 +81,18 @@ export class MediaBrowserIcons extends LitElement {
           line-height: 160%;
           bottom: 0;
           background-color: rgba(var(--rgb-card-background-color), 0.733);
+        }
+
+        .favorite-type {
+          width: 100%;
+          border-bottom: 1px solid var(--secondary-background-color);
+          display: none;
+          margin-top: 0.2rem;
+          font-weight: bold;
+        }
+
+        .favorite-type[show] {
+          display: block;
         }
       `,
     ];

@@ -231,6 +231,7 @@ numberOfFavoritesToShow: 10 # Use this to limit the amount of favorites to show
 hideBrowseMediaButton: true # default is false. Hides the button to open the media browser.
 replaceHttpWithHttpsForThumbnails: true # default is false. Use this if you  want to replace http with https for thumbnails. 
 mediaBrowserTitle: My favorites # default is 'All favorites'. Use this to change the title for the media browser/favorites section.
+sortFavoritesByType: true # default is false. Will group favorites by type (e.g. radio, playlist, album).
 
 # volumes specific
 hideVolumeCogwheel: true # default is false. Will hide the cogwheel for the volumes section.

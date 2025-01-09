@@ -59,7 +59,7 @@ export default class MediaBrowseService {
     );
     for (const child of dir.children ?? []) {
       if (child.can_play) {
-        favorites.push(child);
+        favorites.push({ ...child, favoriteType: dir.title });
       } else if (child.can_expand) {
         await this.browseDir(player, child, favorites);
       }
