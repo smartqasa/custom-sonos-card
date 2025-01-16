@@ -79,7 +79,7 @@ export class MediaBrowserIcons extends LitElement {
         .title {
           font-size: 0.8rem;
           position: absolute;
-          width: 90%;
+          width: 100%;
           line-height: 160%;
           bottom: 0;
           color: var(--primary-text-color);
