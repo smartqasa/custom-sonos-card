@@ -48,7 +48,7 @@ export class MediaBrowserIcons extends LitElement {
 
   private buttonStyle(favoritesItemsPerRow: number) {
     const margin = '1%';
-    const size = `calc(100% / ${favoritesItemsPerRow} - ${margin} * 2)`;
+    const size = `calc(100% / ${favoritesItemsPerRow} - ${margin} * 3)`;
     return styleMap({
       width: size,
       height: size,
@@ -87,18 +87,6 @@ export class MediaBrowserIcons extends LitElement {
           color: var(--primary-text-color);
           font-weight: 400;
           background-color: rgba(var(--rgb-card-background-color), 0.85);
-        }
-
-        .favorite-type {
-          width: 100%;
-          border-bottom: 1px solid var(--secondary-background-color);
-          display: none;
-          margin-top: 0.2rem;
-          font-weight: bold;
-        }
-
-        .favorite-type[show] {
-          display: block;
         }
       `,
     ];
