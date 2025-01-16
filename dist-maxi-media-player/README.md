@@ -19,11 +19,11 @@ Maxi Media Player for Home Assistant UI with a focus on managing multiple media 
 
 and more!
 
-![player.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/player.png)
-![media_browser.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/media_browser.png)
-![groups.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/groups.png)
-![grouping.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/grouping.png)
-![volumes.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/volumes.png)
+![player.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/player.png)
+![media_browser.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/media_browser.png)
+![groups.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/groups.png)
+![grouping.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/grouping.png)
+![volumes.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/volumes.png)
 
 ## Support the project
 
@@ -36,16 +36,16 @@ Do you like the Maxi Media Player? Support the project with a coffee ☕️
 Recommended way of installing this card is with HACS [Home Assistant Community Store](https://hacs.xyz/).
 
 ## Without HACS
-1. Download this file: maxi-media-player.js
+1. Download this file: custom-mxmp-card.js
 1. Add this file into your <config>/www folder
 1. On your dashboard click on the icon at the right top corner then on Edit dashboard
 1. Click again on that icon and then on Manage resources
 1. Click on Add resource
-1. Copy and paste this: /local/maxi-media-player.js?v=1
+1. Copy and paste this: /local/custom-mxmp-card.js?v=1
 1. Click on JavaScript Module then Create
 1. Go back and refresh your page
 1. You can now click on Add card in the bottom right corner and search for Maxi Media Player
-1. After any update of the file you will have to edit /local/maxi-media-player.js?v=1 and change the version to any higher number
+1. After any update of the file you will have to edit /local/custom-mxmp-card.js?v=1 and change the version to any higher number
 
 ## Usage
 
@@ -225,18 +225,18 @@ As mentioned earlier, use the individual sections for more layout flexibility.
 
 Here is an example:
 
-![sections.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/sections.png)
+![sections.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/sections.png)
 ```yaml
 type: horizontal-stack
 cards:
-  - type: custom:maxi-media-player
+  - type: custom:mxmp-card
     sections:
       - groups
       - volumes
-  - type: custom:maxi-media-player
+  - type: custom:mxmp-card
     sections:
       - player
-  - type: custom:maxi-media-player
+  - type: custom:mxmp-card
     sections:
       - grouping
       - media browser
@@ -269,10 +269,10 @@ To determine what to configure for a button do the following:
 7. Use these values to configure the custom favorite.
 
 Example:
-![custom_favorites.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/custom_favorites.png)
+![custom_favorites.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/custom_favorites.png)
     
 ```yaml
-type: custom:maxi-media-player
+type: custom:mxmp-card
 customFavorites: 
   all: # 'all' means it will show for all players, otherwise specify the entity_id of the player.
     - title: BBC
@@ -302,7 +302,7 @@ media_content_id: "spotify://8fb1de564ba7e4c8c4512361860574c83b9/spotify:playlis
 media_content_type: "spotify://playlist"
 ```
 
-![media_content_id.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/media_content_id.png)
+![media_content_id.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/media_content_id.png)
 
 
 ## Dynamic volume level slider
@@ -311,7 +311,7 @@ The volume level slider is dynamically adjusting its scale. If volume is below 2
 20% it will show a scale up to 100%. The color will also change from green to red clearly indicating which scale is
 being used.
 
-![dynamic_volumes.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/dynamic_volumes.png)
+![dynamic_volumes.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/dynamic_volumes.png)
 
 Enable it in config with `dynamicVolumeSlider: true`
 
@@ -328,7 +328,7 @@ Default is otherwise to sort by entity name.
 
 Example:
 ```yaml
-type: custom:maxi-media-player
+type: custom:mxmp-card
 entities:
   - media_player.sonos_kitchen
   - media_player.sonos_hallway
@@ -341,7 +341,7 @@ entities:
 You can configure icons for your devices. This is done under Home Assistant -> Settings -> Entities, select your device then configure the Icon property. If you have configured an icon, it will show in the groups section of the card.
 It is recommended to install this one in HACS GitHub - elax46/custom-brand-icons. It has a lot of icons for different devices.
 
-![device_icons.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/device_icons.png)
+![device_icons.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/device_icons.png)
 
 ## CSS Styling
 
@@ -350,7 +350,7 @@ The recommend way to change look and feel is to use the built-in theming capabil
 Example:
 
 ```yaml
-type: custom:maxi-media-player
+type: custom:mxmp-card
 card_mod:
   style: |
     ha-card {
@@ -365,13 +365,13 @@ card_mod:
 
 The above YAML renders the following:
 
-![styling.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/styling.png)
+![styling.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/styling.png)
 
 ### More card_mod examples
 
 #### Example 1 - Reduce margin for grouping list items
 
-![card_mod_grouping_margin.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/card_mod_grouping_margin.png)
+![card_mod_grouping_margin.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/card_mod_grouping_margin.png)
 
 ```yaml
 card_mod:
@@ -575,7 +575,7 @@ card_mod:
       }
 ```
 
-![img.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/card_mod_2.png)
+![img.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/card_mod_2.png)
 
 #### Example 19 - Changing the font size of song title
 ```yaml
@@ -601,7 +601,7 @@ card_mod:
       }
 ```
 
-![img.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/card_mod_3.png)
+![img.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/card_mod_3.png)
 
 #### Example 21 - Size of group buttons
 ```yaml
@@ -664,7 +664,7 @@ card_mod:
         border-bottom: 1px solid #333;
       }  
 ```
-![img.png](https://github.com/punxaphil/maxi-media-player/raw/main/img/card_mod_4.png)
+![img.png](https://github.com/punxaphil/custom-mxmp-card/raw/main/img/card_mod_4.png)
 
 #### Example 27 - Larger icons in the player section
 ```yaml

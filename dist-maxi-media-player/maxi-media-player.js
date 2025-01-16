@@ -817,7 +817,7 @@ class c extends f {
   }
 }
 const m = e(c);
-const dispatchPrefix = "mxmp-dispatch-event-";
+const dispatchPrefix = "mxmp-card-dispatch-event-";
 const ACTIVE_PLAYER_EVENT_INTERNAL = "active-player";
 const ACTIVE_PLAYER_EVENT = dispatchPrefix + ACTIVE_PLAYER_EVENT_INTERNAL;
 const SHOW_SECTION = "show-section";
@@ -1106,7 +1106,7 @@ class PlayerControls extends r$5 {
 __decorateClass$r([
   n$4({ attribute: false })
 ], PlayerControls.prototype, "store");
-customElements.define("mxmp-player-controls", PlayerControls);
+customElements.define("mxmp-controls", PlayerControls);
 var __defProp$q = Object.defineProperty;
 var __decorateClass$q = (decorators, target, key, kind) => {
   var result = void 0;
@@ -1180,7 +1180,7 @@ class PlayerHeader extends r$5 {
 __decorateClass$q([
   n$4({ attribute: false })
 ], PlayerHeader.prototype, "store");
-customElements.define("mxmp-player-header", PlayerHeader);
+customElements.define("mxmp-header", PlayerHeader);
 /**
  * @license
  * Copyright 2018 Google LLC
@@ -1472,17 +1472,17 @@ class Player extends r$5 {
     const artworkAsBackground = this.config.artworkAsBackground;
     return x`
       <div class="container" style=${artworkAsBackground && this.getBackgroundImage()}>
-        <mxmp-player-header
+        <mxmp-header
           class="header"
           background=${artworkAsBackground || E}
           .store=${this.store}
-        ></mxmp-player-header>
+        ></mxmp-header>
         <div class="artwork" hide=${artworkAsBackground || E} style=${this.artworkStyle()}></div>
-        <mxmp-player-controls
+        <mxmp-controls
           class="controls"
           background=${artworkAsBackground || E}
           .store=${this.store}
-        ></mxmp-player-controls>
+        ></mxmp-controls>
       </div>
     `;
   }
@@ -2503,13 +2503,13 @@ class AdvancedEditor extends BaseEditor {
     const topFavorites = this.config.topFavorites ?? [];
     const data = { ...this.config, topFavorites: topFavorites.join(", ") };
     return x`
-      <mxmp-editor-form
+      <mxmp-card-editor-form
         .schema=${ADVANCED_SCHEMA}
         .config=${this.config}
         .hass=${this.hass}
         .data=${data}
         .changed=${this.changed}
-      ></mxmp-editor-form>
+      ></mxmp-card-editor-form>
       <div>
         The following needs to be configured using code (YAML):
         <ul>
@@ -2533,7 +2533,7 @@ class AdvancedEditor extends BaseEditor {
     this.configChanged();
   }
 }
-customElements.define("mxmp-advanced-editor", AdvancedEditor);
+customElements.define("mxmp-card-advanced-editor", AdvancedEditor);
 const options = {
   player: "Player",
   "media browser": "Media Browser",
@@ -2615,15 +2615,15 @@ const GENERAL_SCHEMA = [
 class GeneralEditor extends BaseEditor {
   render() {
     return x`
-      <mxmp-editor-form
+      <mxmp-card-editor-form
         .schema=${GENERAL_SCHEMA}
         .config=${this.config}
         .hass=${this.hass}
-      ></mxmp-editor-form>
+      ></mxmp-card-editor-form>
     `;
   }
 }
-customElements.define("mxmp-general-editor", GeneralEditor);
+customElements.define("mxmp-card-general-editor", GeneralEditor);
 var __defProp$j = Object.defineProperty;
 var __decorateClass$j = (decorators, target, key, kind) => {
   var result = void 0;
@@ -2687,17 +2687,17 @@ class EntitiesEditor extends BaseEditor {
     this.entitiesSchema = ENTITIES_SCHEMA.filter(
       (schema) => schema.cardType === void 0 || this.config.type.indexOf(schema.cardType) > -1
     );
-    return this.editGroup > -1 ? x`<mxmp-predefined-group-editor
+    return this.editGroup > -1 ? x`<mxmp-card-predefined-group-editor
           .index=${this.editGroup}
           .config=${this.config}
           .hass=${this.hass}
           @closed=${() => this.editGroup = -1}
-        ></mxmp-predefined-group-editor>` : x`
-          <mxmp-editor-form
+        ></mxmp-card-predefined-group-editor>` : x`
+          <mxmp-card-editor-form
             .schema=${this.entitiesSchema}
             .config=${this.config}
             .hass=${this.hass}
-          ></mxmp-editor-form>
+          ></mxmp-card-editor-form>
           <div>
             Predefined Groups
             <ha-control-button-group>
@@ -2716,11 +2716,11 @@ class EntitiesEditor extends BaseEditor {
 
           <div>
             Entity Renaming
-            <mxmp-editor-form
+            <mxmp-card-editor-form
               .schema=${ENTITIES_RENAME_SCHEMA}
               .config=${this.config}
               .hass=${this.hass}
-            ></mxmp-editor-form>
+            ></mxmp-card-editor-form>
           </div>
         `;
   }
@@ -2728,7 +2728,7 @@ class EntitiesEditor extends BaseEditor {
 __decorateClass$j([
   r$3()
 ], EntitiesEditor.prototype, "editGroup");
-customElements.define("mxmp-entities-editor", EntitiesEditor);
+customElements.define("mxmp-card-entities-editor", EntitiesEditor);
 var __defProp$i = Object.defineProperty;
 var __decorateClass$i = (decorators, target, key, kind) => {
   var result = void 0;
@@ -2757,13 +2757,13 @@ class PredefinedGroupEditor extends BaseEditor {
     }
     return x`
       <h2>Add/Edit Predefined Group</h2>
-      <mxmp-editor-form
+      <mxmp-card-editor-form
         .data=${this.getPredefinedGroupWithoutVolumes()}
         .schema=${this.schema}
         .config=${this.config}
         .hass=${this.hass}
         .changed=${(ev) => this.groupChanged(ev)}
-      ></mxmp-editor-form>
+      ></mxmp-card-editor-form>
       <div>
         <h3>Volumes - will be set when players are grouped</h3>
         ${this.predefinedGroup.entities.map(({ player, volume }) => {
@@ -2778,13 +2778,13 @@ class PredefinedGroupEditor extends BaseEditor {
         }
       ];
       return x`
-            <mxmp-editor-form
+            <mxmp-card-editor-form
               .data=${{ volume }}
               .schema=${schema}
               .config=${this.config}
               .hass=${this.hass}
               .changed=${(ev) => this.volumeChanged(ev, player)}
-            ></mxmp-editor-form>
+            ></mxmp-card-editor-form>
           `;
     })}
       </div>
@@ -2864,7 +2864,7 @@ __decorateClass$i([
 __decorateClass$i([
   r$3()
 ], PredefinedGroupEditor.prototype, "predefinedGroup");
-customElements.define("mxmp-predefined-group-editor", PredefinedGroupEditor);
+customElements.define("mxmp-card-predefined-group-editor", PredefinedGroupEditor);
 var __defProp$h = Object.defineProperty;
 var __decorateClass$h = (decorators, target, key, kind) => {
   var result = void 0;
@@ -2877,12 +2877,12 @@ var __decorateClass$h = (decorators, target, key, kind) => {
 class ArtworkOverridesEditor extends BaseEditor {
   render() {
     const items = this.config.mediaArtworkOverrides;
-    return this.editItem > -1 ? x`<mxmp-artwork-override-editor
+    return this.editItem > -1 ? x`<mxmp-card-artwork-override-editor
           .index=${this.editItem}
           .config=${this.config}
           .hass=${this.hass}
           @closed=${() => this.editItem = -1}
-        ></mxmp-artwork-override-editor>` : x`
+        ></mxmp-card-artwork-override-editor>` : x`
           <div>
             Artwork Overrides
             <ha-control-button-group>
@@ -2905,7 +2905,7 @@ class ArtworkOverridesEditor extends BaseEditor {
 __decorateClass$h([
   r$3()
 ], ArtworkOverridesEditor.prototype, "editItem");
-customElements.define("mxmp-artwork-overrides-editor", ArtworkOverridesEditor);
+customElements.define("mxmp-card-artwork-overrides-editor", ArtworkOverridesEditor);
 var __defProp$g = Object.defineProperty;
 var __decorateClass$g = (decorators, target, key, kind) => {
   var result = void 0;
@@ -2957,13 +2957,13 @@ class ArtworkOverrideEditor extends BaseEditor {
     ];
     return x`
       Add/Edit Artwork Override
-      <mxmp-editor-form
+      <mxmp-card-editor-form
         .data=${artworkOverride || newOverride}
         .schema=${schema}
         .config=${this.config}
         .hass=${this.hass}
         .changed=${(ev) => this.changed(ev, this.index)}
-      ></mxmp-editor-form>
+      ></mxmp-card-editor-form>
       <ha-control-button-group>
         <ha-control-button @click=${this.dispatchClose}>
           OK<ha-svg-icon .path=${mdiCheck} label="OK"></ha-svg-icon>
@@ -3002,7 +3002,7 @@ class ArtworkOverrideEditor extends BaseEditor {
 __decorateClass$g([
   n$4({ type: Number })
 ], ArtworkOverrideEditor.prototype, "index");
-customElements.define("mxmp-artwork-override-editor", ArtworkOverrideEditor);
+customElements.define("mxmp-card-artwork-override-editor", ArtworkOverrideEditor);
 var __defProp$f = Object.defineProperty;
 var __decorateClass$f = (decorators, target, key, kind) => {
   var result = void 0;
@@ -3054,7 +3054,7 @@ function computeLabel({ help, label, name }) {
 function filterEditorSchemaOnCardType(schema, cardType) {
   return schema.filter((schema2) => schema2.cardType === void 0 || cardType.indexOf(schema2.cardType) > -1);
 }
-customElements.define("mxmp-editor-form", Form);
+customElements.define("mxmp-card-editor-form", Form);
 var __defProp$e = Object.defineProperty;
 var __decorateClass$e = (decorators, target, key, kind) => {
   var result = void 0;
@@ -3098,22 +3098,22 @@ class CardEditor extends BaseEditor {
     return r$1(this.configArea, [
       [
         GENERAL,
-        () => x`<mxmp-general-editor .config=${this.config} .hass=${this.hass}></mxmp-general-editor>`
+        () => x`<mxmp-card-general-editor .config=${this.config} .hass=${this.hass}></mxmp-card-general-editor>`
       ],
       [
         ENTITIES,
-        () => x`<mxmp-entities-editor .config=${this.config} .hass=${this.hass}></mxmp-entities-editor>`
+        () => x`<mxmp-card-entities-editor .config=${this.config} .hass=${this.hass}></mxmp-card-entities-editor>`
       ],
       [
         ADVANCED,
-        () => x`<mxmp-advanced-editor .config=${this.config} .hass=${this.hass}></mxmp-advanced-editor>`
+        () => x`<mxmp-card-advanced-editor .config=${this.config} .hass=${this.hass}></mxmp-card-advanced-editor>`
       ],
       [
         ARTWORK,
-        () => x`<mxmp-artwork-overrides-editor
+        () => x`<mxmp-card-artwork-overrides-editor
             .config=${this.config}
             .hass=${this.hass}
-          ></mxmp-artwork-overrides-editor>`
+          ></mxmp-card-artwork-overrides-editor>`
       ]
     ]);
   }
@@ -3128,7 +3128,7 @@ class CardEditor extends BaseEditor {
 __decorateClass$e([
   r$3()
 ], CardEditor.prototype, "configArea");
-customElements.define("mxmp-editor", CardEditor);
+customElements.define("mxmp-card-editor", CardEditor);
 /**
  * @license
  * Copyright 2021 Google LLC
@@ -3284,7 +3284,7 @@ class Card extends r$5 {
     return 3;
   }
   static getConfigElement() {
-    return document.createElement("mxmp-editor");
+    return document.createElement("mxmp-card-editor");
   }
   connectedCallback() {
     super.connectedCallback();
@@ -4738,15 +4738,15 @@ __decorateClass([
   r$3()
 ], Queue.prototype, "firstRender");
 window.customCards.push({
-  type: "maxi-media-player",
+  type: "mxmp-card",
   name: "Maxi Media Player",
   description: "Media card for Home Assistant UI with a focus on managing multiple media players",
   preview: true
 });
-customElements.define("maxi-media-player", Card);
+customElements.define("mxmp-card", Card);
 customElements.define("mxmp-grouping", Grouping);
 customElements.define("mxmp-groups", Groups);
 customElements.define("mxmp-media-browser", MediaBrowser);
-customElements.define("mxmp-player", Player);
+customElements.define("maxi-media-player", Player);
 customElements.define("mxmp-volumes", Volumes);
 customElements.define("mxmp-queue", Queue);

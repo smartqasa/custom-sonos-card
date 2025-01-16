@@ -1,5 +1,5 @@
 {
-    "name": "Sonos Card",
-    "render_readme": true,
-    "filename": "custom-sonos-card.js"
+  "name": "SmartQasa Sonos Player",
+  "render_readme": true,
+  "filename": "sonos-player.js"
 }
