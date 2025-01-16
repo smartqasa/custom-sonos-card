@@ -1,4 +1,4 @@
-import { css, html, LitElement, nothing } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import Store from '../model/store';
 import { CardConfig, MediaPlayerItem } from '../types';
@@ -22,9 +22,7 @@ export class MediaBrowserIcons extends LitElement {
       <div class="icons">
         ${items.map((item) => {
           //const showFavoriteType = (this.config.sortFavoritesByType && item.favoriteType !== prevType) || nothing;
-          const showFavoriteType = nothing;
           const toRender = html`
-            <div class="favorite-type" show=${showFavoriteType}>${item.favoriteType}</div>
             <ha-control-button
               style=${this.buttonStyle(this.config.favoritesItemsPerRow || 4)}
               @click=${() => this.dispatchEvent(customEvent(MEDIA_ITEM_SELECTED, item))}

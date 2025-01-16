@@ -4045,9 +4045,7 @@ class MediaBrowserIcons extends r$5 {
     return x`
       <div class="icons">
         ${items.map((item) => {
-      const showFavoriteType = E;
       const toRender = x`
-            <div class="favorite-type" show=${showFavoriteType}>${item.favoriteType}</div>
             <ha-control-button
               style=${this.buttonStyle(this.config.favoritesItemsPerRow || 4)}
               @click=${() => this.dispatchEvent(customEvent(MEDIA_ITEM_SELECTED, item))}
