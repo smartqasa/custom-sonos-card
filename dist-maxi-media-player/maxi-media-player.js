@@ -4078,7 +4078,6 @@ class MediaBrowserIcons extends r$5 {
   }
   static get styles() {
     return [
-      mediaItemTitleStyle,
       i$7`
         .icons {
           display: flex;
