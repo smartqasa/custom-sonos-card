@@ -4072,11 +4072,12 @@ class MediaBrowserIcons extends r$5 {
   }
   buttonStyle(favoritesItemsPerRow) {
     const margin = "1%";
-    const size = `calc(100% / ${favoritesItemsPerRow} - ${margin} * 2)`;
+    const size = `calc(100% / ${favoritesItemsPerRow} - ${margin} * 3)`;
     return o({
       width: size,
       height: size,
-      margin
+      margin,
+      "--control-button-padding": 0
     });
   }
   static get styles() {
@@ -4090,20 +4091,12 @@ class MediaBrowserIcons extends r$5 {
           padding: 0 1rem;
         }
 
-        .button {
-          --control-button-padding: 0;
-          --margin: 1%;
-          --width: calc(100% / var(--items-per-row) - var(--margin) * 3);
-          width: var(--width);
-          height: var(--width);
-          margin: var(--margin);
-        }
-
         .thumbnail {
           width: 100%;
           padding-bottom: 100%;
-          margin: 0 6%;
-          background-size: 100%;
+          //margin: 0 6%;
+          //background-size: 100%;
+          background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
         }
@@ -4111,22 +4104,12 @@ class MediaBrowserIcons extends r$5 {
         .title {
           font-size: 0.8rem;
           position: absolute;
-          width: 100%;
+          width: 90%;
           line-height: 160%;
           bottom: 0;
-          background-color: rgba(var(--rgb-card-background-color), 0.733);
-        }
-
-        .favorite-type {
-          width: 100%;
-          border-bottom: 1px solid var(--secondary-background-color);
-          display: none;
-          margin-top: 0.2rem;
-          font-weight: bold;
-        }
-
-        .favorite-type[show] {
-          display: block;
+          color: var(--primary-text-color);
+          font-weight: 400;
+          background-color: rgba(var(--rgb-card-background-color), 0.85);
         }
       `
     ];
