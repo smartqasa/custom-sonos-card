@@ -16,12 +16,13 @@ export class MediaBrowserIcons extends LitElement {
     this.config = this.store.config;
 
     const items = itemsWithFallbacks(this.items, this.config);
-    let prevType: string | undefined = '';
+    //let prevType: string | undefined = '';
     this.sortItemsByFavoriteTypeIfConfigured(items);
     return html`
       <div class="icons">
         ${items.map((item) => {
-          const showFavoriteType = (this.config.sortFavoritesByType && item.favoriteType !== prevType) || nothing;
+          //const showFavoriteType = (this.config.sortFavoritesByType && item.favoriteType !== prevType) || nothing;
+          const showFavoriteType = nothing;
           const toRender = html`
             <div class="favorite-type" show=${showFavoriteType}>${item.favoriteType}</div>
             <ha-control-button
@@ -31,7 +32,7 @@ export class MediaBrowserIcons extends LitElement {
               ${renderMediaBrowserItem(item, !item.thumbnail || !this.config.favoritesHideTitleForThumbnailIcons)}
             </ha-control-button>
           `;
-          prevType = item.favoriteType;
+          //prevType = item.favoriteType;
           return toRender;
         })}
       </div>

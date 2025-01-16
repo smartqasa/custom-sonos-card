@@ -4041,12 +4041,11 @@ class MediaBrowserIcons extends r$5 {
   render() {
     this.config = this.store.config;
     const items = itemsWithFallbacks(this.items, this.config);
-    let prevType = "";
     this.sortItemsByFavoriteTypeIfConfigured(items);
     return x`
       <div class="icons">
         ${items.map((item) => {
-      const showFavoriteType = this.config.sortFavoritesByType && item.favoriteType !== prevType || E;
+      const showFavoriteType = E;
       const toRender = x`
             <div class="favorite-type" show=${showFavoriteType}>${item.favoriteType}</div>
             <ha-control-button
@@ -4056,7 +4055,6 @@ class MediaBrowserIcons extends r$5 {
               ${renderMediaBrowserItem(item, !item.thumbnail || !this.config.favoritesHideTitleForThumbnailIcons)}
             </ha-control-button>
           `;
-      prevType = item.favoriteType;
       return toRender;
     })}
       </div>
